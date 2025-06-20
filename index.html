@@ -560,26 +560,27 @@
             animation: fadeInUp 1s ease-out 1.2s forwards;
         }
         
-        /* Enhanced CTA Buttons */
+        /* Premium CTA Buttons */
         .cta-primary {
-            background: var(--text-light);
+            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
             color: var(--primary-blue);
-            padding: 1.5rem 3.5rem;
-            font-size: 1.125rem;
+            padding: 1.75rem 4rem;
+            font-size: 1.25rem;
             font-weight: 700;
             border: none;
-            border-radius: 60px;
+            border-radius: 70px;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 1rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            text-transform: none;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
         }
         
         .cta-primary::before {
@@ -590,38 +591,73 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 72, 232, 0.1), transparent);
-            transition: left 0.6s ease;
+            transition: left 0.8s ease;
+        }
+
+        .cta-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 72, 232, 0.1), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
         }
         
         .cta-primary:hover::before {
             left: 100%;
         }
+
+        .cta-primary:hover::after {
+            width: 300%;
+            height: 300%;
+        }
         
         .cta-primary:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #e8f4ff 100%);
+        }
+
+        .cta-primary .icon {
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .cta-primary:hover .icon {
+            transform: rotate(360deg) scale(1.1);
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
         }
         
         .cta-secondary {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
             color: var(--text-light);
-            padding: 1.5rem 3.5rem;
-            font-size: 1.125rem;
+            padding: 1.75rem 4rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 70px;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            backdrop-filter: blur(10px);
+            gap: 1rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(20px);
             position: relative;
             overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            text-transform: none;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
         }
 
         .cta-secondary::before {
@@ -631,20 +667,55 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             opacity: 0;
             transition: opacity 0.4s ease;
+            border-radius: 70px;
+        }
+
+        .cta-secondary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
         }
 
         .cta-secondary:hover::before {
             opacity: 1;
         }
+
+        .cta-secondary:hover::after {
+            width: 300%;
+            height: 300%;
+        }
         
         .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.8);
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 16px 48px rgba(255, 255, 255, 0.1);
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-secondary .icon {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .cta-secondary:hover .icon {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
         }
         
         /* Icon System */
@@ -676,23 +747,60 @@
             margin-left: 2px;
         }
         
-        /* About Section - Expanded with Copywriting */
+        /* About Section - Premium Design */
         .about {
-            padding: 8rem 0;
-            background: var(--bg-light);
+            padding: 10rem 2rem;
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 50%, #2d3748 100%);
             position: relative;
+            z-index: 5;
             overflow: hidden;
         }
-        
+
         .about::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 200px;
-            background: linear-gradient(180deg, var(--secondary-blue) 0%, transparent 100%);
-            opacity: 0.1;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 72, 232, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundFlow 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFlow {
+            0%, 100% { 
+                background: 
+                    radial-gradient(circle at 20% 20%, rgba(0, 72, 232, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            }
+            33% { 
+                background: 
+                    radial-gradient(circle at 70% 30%, rgba(0, 72, 232, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 30% 70%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 40%, rgba(0, 125, 255, 0.12) 0%, transparent 50%);
+            }
+            66% { 
+                background: 
+                    radial-gradient(circle at 40% 80%, rgba(0, 72, 232, 0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 20%, rgba(46, 165, 237, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            }
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 30s linear infinite;
+            pointer-events: none;
         }
         
         .container {
@@ -701,36 +809,70 @@
             padding: 0 2rem;
         }
         
-        .about-content {
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 6rem;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
         
-        .about-text h2 {
-            background: var(--gradient-primary);
+        .about-content {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .about-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--highlight-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 2rem;
+            position: relative;
+            line-height: 1.1;
         }
         
-        .about-description {
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 120px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .about-text {
             font-size: 1.25rem;
-            line-height: 1.7;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
-            color: var(--text-gray);
         }
 
         .about-highlight {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.05), rgba(46, 165, 237, 0.05));
-            border-left: 4px solid var(--primary-blue);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(46, 165, 237, 0.1));
+            border-left: 4px solid var(--highlight-cyan);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2.5rem 0;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .about-highlight::before {
@@ -739,123 +881,157 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background: var(--gradient-primary);
+            box-shadow: 0 0 15px var(--highlight-cyan);
         }
 
         .about-highlight h4 {
-            color: var(--primary-blue);
+            color: var(--highlight-cyan);
             margin-bottom: 1rem;
             font-weight: 700;
+            font-size: 1.3rem;
         }
 
         .about-highlight p {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--text-dark);
+            color: rgba(255, 255, 255, 0.9);
             margin: 0;
         }
         
         .achievements {
             list-style: none;
             display: grid;
-            gap: 1.5rem;
+            gap: 2rem;
             margin-top: 3rem;
         }
         
         .achievement-item {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
-            padding: 2rem;
-            background: var(--text-light);
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 1.5rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
         }
-        
+
         .achievement-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 0;
             height: 100%;
             background: var(--gradient-primary);
-            transform: scaleY(0);
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform-origin: bottom;
+            transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0.1;
+        }
+
+        .achievement-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 2rem;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1), transparent);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            transition: all 0.5s ease;
+            opacity: 0;
         }
         
         .achievement-item:hover::before {
-            transform: scaleY(1);
+            width: 6px;
+        }
+
+        .achievement-item:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.2);
         }
         
         .achievement-item:hover {
-            transform: translateX(8px);
-            box-shadow: var(--shadow-medium);
+            transform: translateX(12px) translateY(-5px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
         }
         
         .achievement-icon {
-            width: 48px;
-            height: 48px;
+            width: 60px;
+            height: 60px;
             background: var(--gradient-primary);
-            border-radius: 12px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-light);
-            font-weight: 600;
+            font-weight: 800;
             flex-shrink: 0;
             position: relative;
             overflow: hidden;
-            font-size: 0.8rem;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 32px rgba(0, 72, 232, 0.3);
         }
         
         .achievement-icon::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transition: all 0.4s ease;
-            transform: translate(-50%, -50%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: iconShine 3s ease-in-out infinite;
+        }
+
+        @keyframes iconShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
         }
         
-        .achievement-item:hover .achievement-icon::before {
-            width: 100%;
-            height: 100%;
+        .achievement-item:hover .achievement-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
+            box-shadow: 0 12px 48px rgba(0, 212, 255, 0.4);
         }
         
         .achievement-text h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
         
         .achievement-text p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .achievement-stats {
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .stat-badge {
-            background: rgba(0, 72, 232, 0.1);
-            color: var(--primary-blue);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--highlight-cyan);
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
             font-weight: 600;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
         
         /* Profile Section */
@@ -1094,7 +1270,7 @@
         
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .about-content {
+            .about-container {
                 gap: 4rem;
             }
             
@@ -1149,7 +1325,7 @@
                 transform: rotate(-45deg) translate(7px, -6px);
             }
             
-            .about-content {
+            .about-container {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
@@ -1190,8 +1366,23 @@
                 padding: 0 1rem;
             }
             
+            .about {
+                padding: 6rem 1rem;
+            }
+            
+            .about-container {
+                padding: 0 1rem;
+            }
+            
             .achievement-item {
                 padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .achievement-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 0.9rem;
             }
             
             .social-link {
@@ -1205,6 +1396,12 @@
 
             .logo {
                 font-size: 1.5rem;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                padding: 1.5rem 2.5rem;
+                font-size: 1.1rem;
             }
         }
         
@@ -1263,10 +1460,14 @@
             <div class="hero-cta">
                 <a href="#about" class="cta-primary">
                     <span>Začít investovat</span>
-                    <div class="icon icon-arrow-right"></div>
+                    <div class="icon">
+                        <div class="icon-arrow-right"></div>
+                    </div>
                 </a>
                 <a href="herohero.html" class="cta-secondary">
-                    <div class="icon icon-play"></div>
+                    <div class="icon">
+                        <div class="icon-play"></div>
+                    </div>
                     <span>Přidat se k členům</span>
                 </a>
             </div>
@@ -1275,95 +1476,93 @@
 
     <!-- About Section -->
     <section class="about reveal" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text reveal-left">
-                    <h2>Proč mi můžete věřit v investování?</h2>
-                    <p class="about-description">
-                        Jsem investor a zakladatel projektu Investuj Chytře. Na rozdíl od většiny „expertů" na internetu, 
-                        neukazuji vám jen teorii z knih. Sdílím vlastní peníze, vlastní obchody a vlastní chyby.
+        <div class="about-container">
+            <div class="about-content reveal-left">
+                <h2 class="about-title">Proč mi můžete věřit v investování?</h2>
+                <p class="about-text">
+                    Jsem investor a zakladatel projektu Investuj Chytře. Na rozdíl od většiny „expertů" na internetu, 
+                    neukazuji vám jen teorii z knih. Sdílím vlastní peníze, vlastní obchody a vlastní chyby.
+                </p>
+
+                <div class="about-highlight">
+                    <h4>Moje filozofie je jednoduchá:</h4>
+                    <p>
+                        "Pokud vám někdo radí s investováním, ale sám vám neukáže své portfolio, 
+                        tak vám vlastně neradí, ale prodává vám sen." Proto mám každou korunu veřejně dostupnou.
                     </p>
-
-                    <div class="about-highlight">
-                        <h4>🎯 Moje filozofie je jednoduchá:</h4>
-                        <p>
-                            "Pokud vám někdo radí s investováním, ale sám vám neukáže své portfolio, 
-                            tak vám vlastně neradí, ale prodává vám sen." Proto mám každou korunu veřejně dostupnou.
-                        </p>
-                    </div>
-
-                    <p class="about-description">
-                        <strong>Víte, co je nejhorší na finančním vzdělávání?</strong> 
-                        Je plné složitých teorií, které vám v praxi k ničemu nejsou. Já vám místo toho ukáži, 
-                        jak skutečně investuji své vlastní peníze – bez příkras, bez pozlátek a bez snahy vám něco prodat.
-                    </p>
-                    
-                    <ul class="achievements">
-                        <li class="achievement-item">
-                            <div class="achievement-icon">💼</div>
-                            <div class="achievement-text">
-                                <h4>100% transparentní investování</h4>
-                                <p>Každá akce na trhu je veřejná. Vidíte přesně co kupuji, prodávám a proč. Žádné tajnosti.</p>
-                                <div class="achievement-stats">
-                                    <span class="stat-badge">Reálné obchody</span>
-                                    <span class="stat-badge">Živé portfolio</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="achievement-item">
-                            <div class="achievement-icon">💰</div>
-                            <div class="achievement-text">
-                                <h4>6,5+ milionu Kč vlastních peněz</h4>
-                                <p>Neradím s penězi, které nemám. Moje portfolio je důkazem, že metody fungují v praxi.</p>
-                                <div class="achievement-stats">
-                                    <span class="stat-badge">Veřejné portfolio</span>
-                                    <span class="stat-badge">Ověřitelné výsledky</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="achievement-item">
-                            <div class="achievement-icon">🎓</div>
-                            <div class="achievement-text">
-                                <h4>Vzdělávání místo prodávání</h4>
-                                <p>Nejsem zde, abych vám prodal kurz za 50 000 Kč. Chci, abyste se naučili investovat opravdu.</p>
-                                <div class="achievement-stats">
-                                    <span class="stat-badge">Bez pozlátek</span>
-                                    <span class="stat-badge">Férové ceny</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="achievement-item">
-                            <div class="achievement-icon">🎯</div>
-                            <div class="achievement-text">
-                                <h4>Praktické kroky namísto teorie</h4>
-                                <p>Zapomeňte na nudné Excel tabulky. Ukáži vám, jak analyzovat firmy tak, aby to dávalo smysl.</p>
-                                <div class="achievement-stats">
-                                    <span class="stat-badge">Krok za krokem</span>
-                                    <span class="stat-badge">Prakticky</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="about-highlight">
-                        <h4>💡 Proč jsem začal s Investuj Chytře?</h4>
-                        <p>
-                            Protože jsem byl frustrovaný z toho, kolik lidí se nechá oklamat pseudo-experty, 
-                            kteří prodávají drahé kurzy, ale vlastně nikdy neinvestovali. 
-                            Rozhodl jsem se ukázat, jak to funguje doopravdy – transparentně a poctivě.
-                        </p>
-                    </div>
                 </div>
+
+                <p class="about-text">
+                    <strong>Víte, co je nejhorší na finančním vzdělávání?</strong> 
+                    Je plné složitých teorií, které vám v praxi k ničemu nejsou. Já vám místo toho ukáži, 
+                    jak skutečně investuji své vlastní peníze – bez příkras, bez pozlátek a bez snahy vám něco prodat.
+                </p>
                 
-                <div class="about-visual reveal">
-                    <div class="profile-card">
-                        <div class="profile-avatar">IC</div>
-                        <h4 class="profile-title">Zakladatel Investuj Chytře</h4>
-                        <p class="profile-subtitle">Investor & Transparentní Educator</p>
-                        <div class="profile-stats">
-                            <span class="stat-number">6.5M+</span>
-                            <span class="stat-label">Kč v portfoliu</span>
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-icon">INV</div>
+                        <div class="achievement-text">
+                            <h4>100% transparentní investování</h4>
+                            <p>Každá akce na trhu je veřejná. Vidíte přesně co kupuji, prodávám a proč. Žádné tajnosti.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Reálné obchody</span>
+                                <span class="stat-badge">Živé portfolio</span>
+                            </div>
                         </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">6.5M</div>
+                        <div class="achievement-text">
+                            <h4>6,5+ milionu Kč vlastních peněz</h4>
+                            <p>Neradím s penězi, které nemám. Moje portfolio je důkazem, že metody fungují v praxi.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Veřejné portfolio</span>
+                                <span class="stat-badge">Ověřitelné výsledky</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">EDU</div>
+                        <div class="achievement-text">
+                            <h4>Vzdělávání místo prodávání</h4>
+                            <p>Nejsem zde, abych vám prodal kurz za 50 000 Kč. Chci, abyste se naučili investovat opravdu.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Bez pozlátek</span>
+                                <span class="stat-badge">Férové ceny</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">REAL</div>
+                        <div class="achievement-text">
+                            <h4>Praktické kroky namísto teorie</h4>
+                            <p>Zapomeňte na nudné Excel tabulky. Ukáži vám, jak analyzovat firmy tak, aby to dávalo smysl.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Krok za krokem</span>
+                                <span class="stat-badge">Prakticky</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="about-highlight">
+                    <h4>Proč jsem začal s Investuj Chytře?</h4>
+                    <p>
+                        Protože jsem byl frustrovaný z toho, kolik lidí se nechá oklamat pseudo-experty, 
+                        kteří prodávají drahé kurzy, ale vlastně nikdy neinvestovali. 
+                        Rozhodl jsem se ukázat, jak to funguje doopravdy – transparentně a poctivě.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="about-visual reveal">
+                <div class="profile-card">
+                    <div class="profile-avatar">IC</div>
+                    <h4 class="profile-title">Zakladatel Investuj Chytře</h4>
+                    <p class="profile-subtitle">Investor & Transparentní Educator</p>
+                    <div class="profile-stats">
+                        <span class="stat-number">6.5M+</span>
+                        <span class="stat-label">Kč v portfoliu</span>
                     </div>
                 </div>
             </div>
@@ -1549,14 +1748,14 @@
             targetX += (mouseX - targetX) * 0.1;
             targetY += (mouseY - targetY) * 0.1;
 
-            const cards = document.querySelectorAll('.profile-card, .achievement-item');
+            const cards = document.querySelectorAll('.profile-card, .achievement-item, .social-link');
             
             cards.forEach((card, index) => {
-                const intensity = (index % 3 + 1) * 0.5;
-                const xOffset = targetX * intensity * 8;
-                const yOffset = targetY * intensity * 8;
+                const intensity = (index % 3 + 1) * 0.3;
+                const xOffset = targetX * intensity * 6;
+                const yOffset = targetY * intensity * 6;
                 
-                card.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0) rotateX(${targetY * intensity * 1}deg) rotateY(${targetX * intensity * 1}deg)`;
+                card.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0) rotateX(${targetY * intensity * 0.8}deg) rotateY(${targetX * intensity * 0.8}deg)`;
             });
 
             requestAnimationFrame(animateParallax);
@@ -1570,7 +1769,7 @@
         // Reset transform on window resize if mobile
         window.addEventListener('resize', debounce(() => {
             if (window.innerWidth <= 768) {
-                document.querySelectorAll('.profile-card, .achievement-item').forEach(card => {
+                document.querySelectorAll('.profile-card, .achievement-item, .social-link').forEach(card => {
                     card.style.transform = '';
                 });
             }
