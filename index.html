@@ -1976,16 +1976,8 @@
                 console.log('Logo image not found, using fallback');
             };
             
-            // Try different possible paths
-            const possiblePaths = [
-                'logo1.png',
-                './logo1.png',
-                '/logo1.png',
-                'assets/logo1.png',
-                'images/logo1.png'
-            ];
-            
-            img.src = possiblePaths[0];
+            // Try the correct GitHub raw URL based on your repository
+            img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/logo1.png';
         }
 
         // Load logo when DOM is ready
