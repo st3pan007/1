@@ -270,6 +270,39 @@
             box-shadow: 0 4px 40px rgba(0, 72, 232, 0.08);
             padding: 1rem 0;
         }
+
+        .navbar.scrolled .logo {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            border-color: rgba(0, 72, 232, 0.2);
+        }
+
+        .navbar.scrolled .logo-text {
+            color: var(--primary-blue);
+            -webkit-text-fill-color: var(--primary-blue);
+        }
+
+        .navbar.scrolled .nav-links {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            border-color: rgba(0, 72, 232, 0.2);
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: var(--primary-blue);
+        }
+
+        .navbar.scrolled .nav-links a:hover {
+            color: var(--text-light);
+            background: var(--gradient-primary);
+        }
+
+        .navbar.scrolled .nav-links a.active {
+            color: var(--text-light);
+            background: var(--gradient-primary);
+        }
+
+        .navbar.scrolled .hamburger span {
+            background: var(--primary-blue);
+        }
         
         .nav-container {
             max-width: 1400px;
@@ -310,16 +343,21 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--text-light);
         }
 
-        .logo-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--text-light);
-            fill: none;
-            stroke-width: 2;
+        .logo-icon img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
             z-index: 2;
             position: relative;
+        }
+
+        .logo-icon.fallback {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
         }
 
         .logo-icon::before {
@@ -527,6 +565,11 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             z-index: 2;
+        }
+
+        .navbar.scrolled .hamburger {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            border-color: rgba(0, 72, 232, 0.2);
         }
 
         .hamburger.active span {
@@ -1516,11 +1559,12 @@
             .logo-icon {
                 width: 32px;
                 height: 32px;
+                font-size: 1rem;
             }
 
-            .logo-icon svg {
-                width: 20px;
-                height: 20px;
+            .logo-icon img {
+                width: 24px;
+                height: 24px;
             }
 
             .cta-primary,
@@ -1554,16 +1598,8 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.5 2c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z"/>
-                        <path d="M17.5 6.5c-.28 0-.5.22-.5.5v2.5c0 1.66-1.34 3-3 3s-3-1.34-3-3V7c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2.5c0 2.21 1.79 4 4 4s4-1.79 4-4V7c0-.28-.22-.5-.5-.5z"/>
-                        <path d="M12 15v2.5c0 1.66-1.34 3-3 3s-3-1.34-3-3V15"/>
-                        <path d="M18 15v2.5c0 1.66-1.34 3-3 3s-3-1.34-3-3V15"/>
-                        <circle cx="7" cy="8.5" r="1.5"/>
-                        <circle cx="17" cy="8.5" r="1.5"/>
-                        <path d="M12 5c2.21 0 4 1.79 4 4v8c0 1.1-.9 2-2 2H10c-1.1 0-2-.9-2-2V9c0-2.21 1.79-4 4-4z"/>
-                    </svg>
+                <div class="logo-icon fallback" id="logoIcon">
+                    IC
                 </div>
                 <span class="logo-text">INVESTUJ</span>
             </a>
@@ -1924,6 +1960,36 @@
                 });
             }
         }, 100));
+
+        // Try to load logo image
+        function loadLogo() {
+            const logoIcon = document.getElementById('logoIcon');
+            const img = new Image();
+            
+            img.onload = function() {
+                logoIcon.innerHTML = `<img src="${this.src}" alt="Investuj Chytře Logo" style="width: 28px; height: 28px; object-fit: contain;" />`;
+                logoIcon.classList.remove('fallback');
+            };
+            
+            img.onerror = function() {
+                // Keep the fallback "IC" text
+                console.log('Logo image not found, using fallback');
+            };
+            
+            // Try different possible paths
+            const possiblePaths = [
+                'logo1.png',
+                './logo1.png',
+                '/logo1.png',
+                'assets/logo1.png',
+                'images/logo1.png'
+            ];
+            
+            img.src = possiblePaths[0];
+        }
+
+        // Load logo when DOM is ready
+        document.addEventListener('DOMContentLoaded', loadLogo);
 
         // Enhanced loading animation
         document.addEventListener('DOMContentLoaded', () => {
