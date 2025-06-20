@@ -23,8 +23,13 @@
     }
     </script>
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="data:font/woff2;base64," as="font" type="font/woff2" crossorigin>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     
     <style>
         /* CSS Reset & Variables */
@@ -53,9 +58,6 @@
             --border-glass: 1px solid rgba(255, 255, 255, 0.18);
             --backdrop-blur: blur(20px);
         }
-        
-        /* Typography System */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
         
         html {
             scroll-behavior: smooth;
@@ -168,6 +170,17 @@
                 box-shadow: 0 0 40px rgba(0, 72, 232, 0.6), 0 0 80px rgba(0, 212, 255, 0.3);
             }
         }
+
+        @keyframes navSlideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
         
         /* Glassmorphism Effects */
         .glass {
@@ -238,22 +251,24 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Navigation */
+        /* Revolutionary Navigation */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 1.5rem 0;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: navSlideIn 1s ease-out;
         }
         
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 72, 232, 0.1);
-            box-shadow: var(--shadow-soft);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(0, 72, 232, 0.08);
+            box-shadow: 0 4px 40px rgba(0, 72, 232, 0.08);
+            padding: 1rem 0;
         }
         
         .nav-container {
@@ -263,105 +278,183 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
+        /* Revolutionary Logo */
         .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
+            font-size: 2rem;
+            font-weight: 900;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-decoration: none;
             position: relative;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            letter-spacing: -0.02em;
         }
         
-        .logo::after {
+        .logo::before {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 0;
-            height: 3px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 0;
+            background: radial-gradient(circle, var(--highlight-cyan), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+            opacity: 0;
         }
         
-        .logo:hover::after {
-            width: 100%;
+        .logo:hover::before {
+            width: 120%;
+            height: 300%;
+            opacity: 0.15;
         }
         
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3));
+        }
+        
+        /* Futuristic Navigation Links */
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 3rem;
+            gap: 0.5rem;
             align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 60px;
+            padding: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 60px;
+        }
+
+        .nav-links:hover::before {
+            opacity: 0.05;
         }
         
         .nav-links a {
             text-decoration: none;
             color: var(--text-dark);
-            font-weight: 500;
-            font-size: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
             position: relative;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 1.5rem;
             border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 2;
+            white-space: nowrap;
         }
         
         .nav-links a::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: -1;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
         }
         
         .nav-links a:hover::before {
-            transform: translateY(0);
+            width: 100%;
+            height: 100%;
         }
         
         .nav-links a:hover {
-            color: var(--text-light);
+            color: var(--primary-blue);
             transform: translateY(-2px);
         }
         
         .nav-links a.active {
-            background: var(--gradient-primary);
             color: var(--text-light);
-            box-shadow: var(--shadow-soft);
+            background: var(--gradient-primary);
+            box-shadow: 0 8px 32px rgba(0, 72, 232, 0.3);
+        }
+
+        /* Floating Action Elements */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         
-        /* Mobile Menu */
+        /* Enhanced Mobile Menu */
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 0.5rem;
-            background: var(--glass);
-            border-radius: 10px;
-            backdrop-filter: var(--backdrop-blur);
-            border: var(--border-glass);
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hamburger::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .hamburger:hover::before {
+            opacity: 1;
+        }
+        
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px rgba(0, 72, 232, 0.3);
         }
         
         .hamburger span {
-            width: 25px;
+            width: 24px;
             height: 3px;
             background: var(--primary-blue);
             margin: 3px 0;
-            border-radius: 2px;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hamburger.active span {
+            background: var(--primary-blue);
         }
         
-        /* Hero Section */
+        /* Hero Section - From provided code */
         .hero {
             min-height: 100vh;
             background: var(--gradient-primary);
@@ -467,14 +560,15 @@
             animation: fadeInUp 1s ease-out 1.2s forwards;
         }
         
+        /* Enhanced CTA Buttons */
         .cta-primary {
             background: var(--text-light);
             color: var(--primary-blue);
-            padding: 1.25rem 3rem;
+            padding: 1.5rem 3.5rem;
             font-size: 1.125rem;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
-            border-radius: 50px;
+            border-radius: 60px;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
@@ -483,7 +577,9 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .cta-primary::before {
@@ -502,31 +598,53 @@
         }
         
         .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
         }
         
         .cta-secondary {
             background: transparent;
             color: var(--text-light);
-            padding: 1.25rem 3rem;
+            padding: 1.5rem 3.5rem;
             font-size: 1.125rem;
-            font-weight: 500;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 60px;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            backdrop-filter: var(--backdrop-blur);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cta-secondary:hover::before {
+            opacity: 1;
         }
         
         .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 16px 48px rgba(255, 255, 255, 0.1);
         }
         
         /* Icon System */
@@ -558,7 +676,7 @@
             margin-left: 2px;
         }
         
-        /* About Section */
+        /* About Section - Expanded with Copywriting */
         .about {
             padding: 8rem 0;
             background: var(--bg-light);
@@ -601,14 +719,48 @@
         .about-description {
             font-size: 1.25rem;
             line-height: 1.7;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             color: var(--text-gray);
+        }
+
+        .about-highlight {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.05), rgba(46, 165, 237, 0.05));
+            border-left: 4px solid var(--primary-blue);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .about-highlight h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .about-highlight p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin: 0;
         }
         
         .achievements {
             list-style: none;
             display: grid;
             gap: 1.5rem;
+            margin-top: 3rem;
         }
         
         .achievement-item {
@@ -659,6 +811,7 @@
             flex-shrink: 0;
             position: relative;
             overflow: hidden;
+            font-size: 0.8rem;
         }
         
         .achievement-icon::before {
@@ -688,6 +841,21 @@
         .achievement-text p {
             color: var(--text-gray);
             font-size: 0.95rem;
+        }
+
+        .achievement-stats {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .stat-badge {
+            background: rgba(0, 72, 232, 0.1);
+            color: var(--primary-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
         
         /* Profile Section */
@@ -795,168 +963,110 @@
             font-weight: 500;
         }
         
-        /* Social Links Section */
+        /* Social Links Section - Simplified Design */
         .social-section {
-            padding: 6rem 0;
-            background: var(--text-light);
-            position: relative;
-        }
-        
-        .social-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .social-header h3 {
+            padding: 6rem 2rem;
             background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
+            text-align: center;
         }
         
-        .social-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-gray);
-            max-width: 600px;
+        .social-container {
+            max-width: 800px;
             margin: 0 auto;
         }
         
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        .social-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
             gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            flex-wrap: wrap;
         }
         
-        .social-card {
-            background: var(--text-light);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-soft);
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 1px solid var(--border-glass);
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--text-dark);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            min-width: 150px;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 72, 232, 0.1);
         }
-        
-        .social-card::before {
+
+        .social-link::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
         }
         
-        .social-card:hover::before {
-            opacity: 0.05;
-        }
-        
-        .social-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--primary-blue);
+        .social-link:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.4);
         }
         
         .social-icon {
             width: 60px;
             height: 60px;
-            border-radius: 16px;
+            background: linear-gradient(45deg, var(--accent-blue), var(--highlight-cyan));
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            transition: transform 0.4s ease;
         }
-        
-        .social-card:hover .social-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .social-icon.instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-        
-        .social-icon.threads {
-            background: linear-gradient(45deg, #000 0%, #333 100%);
-        }
-        
-        .social-icon.facebook {
-            background: linear-gradient(45deg, #1877f2 0%, #42a5f5 100%);
-        }
-        
-        .social-icon.tiktok {
-            background: linear-gradient(45deg, #000 0%, #ff0050 50%, #00f2ea 100%);
-        }
-        
+
         .social-icon::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 24px;
-            height: 24px;
-            background: var(--text-light);
-            transform: translate(-50%, -50%);
-        }
-        
-        .social-icon.instagram::before {
-            border-radius: 6px;
-            border: 2px solid currentColor;
-        }
-        
-        .social-icon.instagram::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 8px;
-            height: 8px;
-            border: 2px solid currentColor;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
+            transition: all 0.4s ease;
             transform: translate(-50%, -50%);
         }
+
+        .social-link:hover .social-icon::before {
+            width: 100%;
+            height: 100%;
+        }
         
-        .social-card h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
+        .social-link:hover .social-icon {
+            transform: rotate(360deg);
+            box-shadow: 0 0 30px var(--highlight-cyan);
+        }
+        
+        .social-name {
             font-weight: 600;
-        }
-        
-        .social-card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-        
-        .social-stats {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.875rem;
-            color: var(--text-gray);
-        }
-        
-        .social-stat {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        
-        .social-stat::before {
-            content: '';
-            width: 4px;
-            height: 4px;
-            background: var(--primary-blue);
-            border-radius: 50%;
+            font-size: 1.125rem;
         }
         
         /* Scroll Reveal Animation */
@@ -988,8 +1098,18 @@
                 gap: 4rem;
             }
             
-            .social-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .social-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 0.25rem;
+                padding: 0.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
             }
         }
         
@@ -998,14 +1118,14 @@
                 display: none;
                 position: absolute;
                 top: 100%;
-                left: 0;
-                right: 0;
+                left: 2rem;
+                right: 2rem;
                 background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: var(--backdrop-blur);
                 flex-direction: column;
                 gap: 0;
                 padding: 2rem;
-                border-radius: 0 0 20px 20px;
+                border-radius: 20px;
                 box-shadow: var(--shadow-medium);
             }
             
@@ -1051,9 +1171,13 @@
                 transform: none;
             }
             
-            .social-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-link {
+                min-width: 120px;
+                padding: 1.5rem;
             }
         }
         
@@ -1070,8 +1194,17 @@
                 padding: 1.5rem;
             }
             
-            .social-card {
-                padding: 2rem;
+            .social-link {
+                padding: 1.5rem;
+                min-width: 100px;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
             }
         }
         
@@ -1095,21 +1228,25 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Revolutionary Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">Investuj Chytře</a>
+            
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html" class="active">Domů</a></li>
-                <li><a href="herohero.html">HeroHero Členství</a></li>
+                <li><a href="herohero.html">HeroHero</a></li>
                 <li><a href="merch.html">Merch</a></li>
-                <li><a href="kurzy-knihy.html">Kurzy & Knihy</a></li>
-                <li><a href="uprava-portfolia.html">Úprava portfolia</a></li>
+                <li><a href="kurzy-knihy.html">Kurzy</a></li>
+                <li><a href="uprava-portfolia.html">Portfolio</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <div class="nav-actions">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -1141,46 +1278,88 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text reveal-left">
-                    <h2>O mně (BIO)</h2>
-                    <p class="about-description">Jsem investor a zakladatel projektu Investuj Chytře. Věnuji se vzdělávání lidí v investování – srozumitelně, jednoduše, bez pozlátek.</p>
+                    <h2>Proč mi můžete věřit v investování?</h2>
+                    <p class="about-description">
+                        Jsem investor a zakladatel projektu Investuj Chytře. Na rozdíl od většiny „expertů" na internetu, 
+                        neukazuji vám jen teorii z knih. Sdílím vlastní peníze, vlastní obchody a vlastní chyby.
+                    </p>
+
+                    <div class="about-highlight">
+                        <h4>🎯 Moje filozofie je jednoduchá:</h4>
+                        <p>
+                            "Pokud vám někdo radí s investováním, ale sám vám neukáže své portfolio, 
+                            tak vám vlastně neradí, ale prodává vám sen." Proto mám každou korunu veřejně dostupnou.
+                        </p>
+                    </div>
+
+                    <p class="about-description">
+                        <strong>Víte, co je nejhorší na finančním vzdělávání?</strong> 
+                        Je plné složitých teorií, které vám v praxi k ničemu nejsou. Já vám místo toho ukáži, 
+                        jak skutečně investuji své vlastní peníze – bez příkras, bez pozlátek a bez snahy vám něco prodat.
+                    </p>
                     
                     <ul class="achievements">
                         <li class="achievement-item">
-                            <div class="achievement-icon">IC</div>
+                            <div class="achievement-icon">💼</div>
                             <div class="achievement-text">
-                                <h4>Investor a zakladatel projektu</h4>
-                                <p>Zakladatel projektu Investuj Chytře s dlouholetými zkušenostmi</p>
+                                <h4>100% transparentní investování</h4>
+                                <p>Každá akce na trhu je veřejná. Vidíte přesně co kupuji, prodávám a proč. Žádné tajnosti.</p>
+                                <div class="achievement-stats">
+                                    <span class="stat-badge">Reálné obchody</span>
+                                    <span class="stat-badge">Živé portfolio</span>
+                                </div>
                             </div>
                         </li>
                         <li class="achievement-item">
-                            <div class="achievement-icon">6.5M</div>
+                            <div class="achievement-icon">💰</div>
                             <div class="achievement-text">
-                                <h4>Více než 6,5 milionu Kč portfolio</h4>
-                                <p>Ve veřejně sdíleném portfoliu s transparentními výsledky</p>
+                                <h4>6,5+ milionu Kč vlastních peněz</h4>
+                                <p>Neradím s penězi, které nemám. Moje portfolio je důkazem, že metody fungují v praxi.</p>
+                                <div class="achievement-stats">
+                                    <span class="stat-badge">Veřejné portfolio</span>
+                                    <span class="stat-badge">Ověřitelné výsledky</span>
+                                </div>
                             </div>
                         </li>
                         <li class="achievement-item">
-                            <div class="achievement-icon">EDU</div>
+                            <div class="achievement-icon">🎓</div>
                             <div class="achievement-text">
-                                <h4>Vzdělávání v investování</h4>
-                                <p>Srozumitelně, jednoduše, bez pozlátek a složité teorie</p>
+                                <h4>Vzdělávání místo prodávání</h4>
+                                <p>Nejsem zde, abych vám prodal kurz za 50 000 Kč. Chci, abyste se naučili investovat opravdu.</p>
+                                <div class="achievement-stats">
+                                    <span class="stat-badge">Bez pozlátek</span>
+                                    <span class="stat-badge">Férové ceny</span>
+                                </div>
                             </div>
                         </li>
                         <li class="achievement-item">
-                            <div class="achievement-icon">REAL</div>
+                            <div class="achievement-icon">🎯</div>
                             <div class="achievement-text">
-                                <h4>Reálné kroky, ne teorie</h4>
-                                <p>Sdílím konkrétní obchody – co kupuji, prodávám a proč</p>
+                                <h4>Praktické kroky namísto teorie</h4>
+                                <p>Zapomeňte na nudné Excel tabulky. Ukáži vám, jak analyzovat firmy tak, aby to dávalo smysl.</p>
+                                <div class="achievement-stats">
+                                    <span class="stat-badge">Krok za krokem</span>
+                                    <span class="stat-badge">Prakticky</span>
+                                </div>
                             </div>
                         </li>
                     </ul>
+
+                    <div class="about-highlight">
+                        <h4>💡 Proč jsem začal s Investuj Chytře?</h4>
+                        <p>
+                            Protože jsem byl frustrovaný z toho, kolik lidí se nechá oklamat pseudo-experty, 
+                            kteří prodávají drahé kurzy, ale vlastně nikdy neinvestovali. 
+                            Rozhodl jsem se ukázat, jak to funguje doopravdy – transparentně a poctivě.
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="about-visual reveal">
                     <div class="profile-card">
                         <div class="profile-avatar">IC</div>
                         <h4 class="profile-title">Zakladatel Investuj Chytře</h4>
-                        <p class="profile-subtitle">Investor & Educator</p>
+                        <p class="profile-subtitle">Investor & Transparentní Educator</p>
                         <div class="profile-stats">
                             <span class="stat-number">6.5M+</span>
                             <span class="stat-label">Kč v portfoliu</span>
@@ -1193,47 +1372,35 @@
 
     <!-- Social Links Section -->
     <section class="social-section reveal">
-        <div class="container">
-            <div class="social-header">
-                <h3>Sledujte mě na sociálních sítích</h3>
-                <p class="social-subtitle">Zůstaňte v kontaktu a získávejte nejnovější investiční tipy, analýzy a vzdělávací obsah přímo do vašeho feedu.</p>
-            </div>
-            <div class="social-grid">
-                <a href="#" class="social-card" target="_blank" rel="noopener">
-                    <div class="social-icon instagram"></div>
-                    <h4>Instagram</h4>
-                    <p>Denní investiční tipy, stories z trhu a quick analýzy</p>
-                    <div class="social-stats">
-                        <span class="social-stat">Denní obsah</span>
-                        <span class="social-stat">Stories</span>
+        <div class="social-container">
+            <h2 class="social-title">Sleduj mě na sociálních sítích</h2>
+            <div class="social-links">
+                <a href="#" class="social-link" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <i data-lucide="instagram" size="24"></i>
                     </div>
+                    <span class="social-name">Instagram</span>
                 </a>
-                <a href="#" class="social-card" target="_blank" rel="noopener">
-                    <div class="social-icon threads"></div>
-                    <h4>Threads</h4>
-                    <p>Diskuze o aktuálním dění na trzích a investičních příležitostech</p>
-                    <div class="social-stats">
-                        <span class="social-stat">Diskuze</span>
-                        <span class="social-stat">Q&A</span>
+                
+                <a href="#" class="social-link" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <i data-lucide="at-sign" size="24"></i>
                     </div>
+                    <span class="social-name">Threads</span>
                 </a>
-                <a href="#" class="social-card" target="_blank" rel="noopener">
-                    <div class="social-icon facebook"></div>
-                    <h4>Facebook</h4>
-                    <p>Komunita investorů, sdílení zkušeností a dlouhodobých analýz</p>
-                    <div class="social-stats">
-                        <span class="social-stat">Komunita</span>
-                        <span class="social-stat">Analýzy</span>
+                
+                <a href="#" class="social-link" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <i data-lucide="facebook" size="24"></i>
                     </div>
+                    <span class="social-name">Facebook</span>
                 </a>
-                <a href="#" class="social-card" target="_blank" rel="noopener">
-                    <div class="social-icon tiktok"></div>
-                    <h4>TikTok</h4>
-                    <p>Krátká vzdělávací videa o investování pro mladou generaci</p>
-                    <div class="social-stats">
-                        <span class="social-stat">Krátká videa</span>
-                        <span class="social-stat">Vzdělání</span>
+                
+                <a href="#" class="social-link" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <i data-lucide="video" size="24"></i>
                     </div>
+                    <span class="social-name">TikTok</span>
                 </a>
             </div>
         </div>
@@ -1261,7 +1428,7 @@
             }, 800);
         });
 
-        // Navbar scroll effect
+        // Revolutionary Navbar scroll effect
         const navbar = document.getElementById('navbar');
         const handleScroll = debounce(() => {
             if (window.scrollY > 50) {
@@ -1273,7 +1440,7 @@
         
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        // Mobile menu toggle
+        // Mobile menu toggle with enhanced animation
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
 
@@ -1296,7 +1463,7 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const headerOffset = 80;
+                    const headerOffset = 100;
                     const elementPosition = target.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -1308,7 +1475,7 @@
             });
         });
 
-        // Scroll reveal animation
+        // Enhanced scroll reveal animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1326,7 +1493,7 @@
             observer.observe(el);
         });
 
-        // Particles animation
+        // Advanced particles animation
         function createParticles() {
             const particlesContainer = document.querySelector('.particles-container');
             const particleCount = 60;
@@ -1354,7 +1521,7 @@
 
         createParticles();
 
-        // Parallax effect for hero section
+        // Enhanced parallax effect for hero section
         const heroParallax = debounce(() => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
@@ -1382,14 +1549,14 @@
             targetX += (mouseX - targetX) * 0.1;
             targetY += (mouseY - targetY) * 0.1;
 
-            const cards = document.querySelectorAll('.profile-card, .social-card, .achievement-item');
+            const cards = document.querySelectorAll('.profile-card, .achievement-item');
             
             cards.forEach((card, index) => {
                 const intensity = (index % 3 + 1) * 0.5;
-                const xOffset = targetX * intensity * 10;
-                const yOffset = targetY * intensity * 10;
+                const xOffset = targetX * intensity * 8;
+                const yOffset = targetY * intensity * 8;
                 
-                card.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0) rotateX(${targetY * intensity * 2}deg) rotateY(${targetX * intensity * 2}deg)`;
+                card.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0) rotateX(${targetY * intensity * 1}deg) rotateY(${targetX * intensity * 1}deg)`;
             });
 
             requestAnimationFrame(animateParallax);
@@ -1403,35 +1570,25 @@
         // Reset transform on window resize if mobile
         window.addEventListener('resize', debounce(() => {
             if (window.innerWidth <= 768) {
-                document.querySelectorAll('.profile-card, .social-card, .achievement-item').forEach(card => {
+                document.querySelectorAll('.profile-card, .achievement-item').forEach(card => {
                     card.style.transform = '';
                 });
             }
         }, 100));
 
-        // Optimize scroll performance
-        let ticking = false;
-
-        function updateScrollEffects() {
-            handleScroll();
-            heroParallax();
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollEffects);
-                ticking = true;
-            }
-        }, { passive: true });
-
-        // Add loading animation delay for better UX
+        // Enhanced loading animation
         document.addEventListener('DOMContentLoaded', () => {
             document.body.style.opacity = '0';
             setTimeout(() => {
-                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.transition = 'opacity 0.6s ease';
                 document.body.style.opacity = '1';
             }, 100);
+        });
+
+        // Add staggered animation to achievement items
+        const achievementItems = document.querySelectorAll('.achievement-item');
+        achievementItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
         });
     </script>
 </body>
