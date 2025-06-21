@@ -243,6 +243,7 @@
             padding: 1.5rem 0;
             transition: transform 0.3s ease, background-color 0.3s ease;
             will-change: transform;
+            background: transparent;
         }
         
         .navbar.scrolled {
@@ -254,17 +255,27 @@
         }
         
         .navbar.scrolled .logo {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
             border-color: rgba(0, 72, 232, 0.2);
+            color: var(--text-dark);
+        }
+        
+        .navbar.scrolled .logo img {
+            filter: brightness(1);
+        }
+        
+        .navbar.scrolled .logo.fallback {
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
         }
         
         .navbar.scrolled .nav-links {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
             border-color: rgba(0, 72, 232, 0.2);
         }
         
         .navbar.scrolled .nav-links a {
-            color: var(--primary-blue);
+            color: var(--text-dark);
         }
         
         .navbar.scrolled .nav-links a:hover {
@@ -278,7 +289,7 @@
         }
         
         .navbar.scrolled .hamburger span {
-            background: var(--primary-blue);
+            background: var(--text-dark);
         }
         
         .nav-container {
@@ -303,14 +314,14 @@
             color: var(--text-light);
             text-decoration: none;
             position: relative;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
             letter-spacing: -0.02em;
             padding: 0.5rem 1rem;
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
             backdrop-filter: blur(10px);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            will-change: transform;
+            will-change: transform, color;
             overflow: hidden;
         }
         
@@ -319,6 +330,7 @@
             height: auto;
             object-fit: contain;
             display: block;
+            transition: filter 0.3s ease;
         }
         
         .logo.fallback {
@@ -344,6 +356,7 @@
             padding: 0.5rem;
             position: relative;
             will-change: transform;
+            z-index: 1001;
         }
         
         .nav-links a {
@@ -383,6 +396,7 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
+            z-index: 1002;
         }
         
         .hamburger::before {
@@ -419,12 +433,12 @@
         }
         
         .navbar.scrolled .hamburger {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            background: rgba(255, 255, 255, 0.2);
             border-color: rgba(0, 72, 232, 0.2);
         }
         
         .hamburger.active span {
-            background: var(--text-light);
+            background: var(--text-dark);
         }
         
         /* Hero Section */
@@ -846,25 +860,31 @@
                 top: 100%;
                 left: 2rem;
                 right: 2rem;
-                background: rgba(0,0,0,0.95);
+                background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: var(--backdrop-blur);
                 flex-direction: column;
                 gap: 0.5rem;
                 padding: 2rem;
                 border-radius: 20px;
                 box-shadow: var(--shadow-medium);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(0, 72, 232, 0.2);
+                z-index: 1001;
+            }
+            
+            .navbar.scrolled .nav-links {
+                background: rgba(255, 255, 255, 0.95);
+                border-color: rgba(0, 72, 232, 0.2);
             }
             
             .nav-links a {
-                color: var(--text-light);
+                color: var(--text-dark);
                 padding: 1rem;
                 text-align: center;
                 border-radius: 15px;
             }
             
             .nav-links a:hover {
-                background: rgba(255,255,255,0.1);
+                background: rgba(0, 72, 232, 0.1);
                 transform: none;
             }
             
