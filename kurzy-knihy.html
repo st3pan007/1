@@ -837,6 +837,24 @@
                 height: 50px;
                 padding: 0.5rem 0.75rem;
             }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .featured-product {
+                padding: 2rem;
+            }
+
+            .product-features {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-includes {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
         
         @media (max-width: 768px) {
@@ -905,18 +923,52 @@
                 justify-content: center;
             }
             
-            .courses {
+            .products {
                 padding: 6rem 1rem;
             }
-            
-            .courses-placeholder {
-                padding: 1.5rem;
-                gap: 1rem;
+
+            .products-container {
+                padding: 0 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
             }
             
-            .courses-icon {
-                width: 50px;
-                height: 50px;
+            .featured-product {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .featured-product h3 {
+                font-size: 1.8rem;
+            }
+
+            .product-stats {
+                justify-content: center;
+            }
+
+            .product-card {
+                padding: 1.5rem;
+            }
+
+            .bundle-offer {
+                padding: 2rem;
+            }
+
+            .bundle-offer h3 {
+                font-size: 2rem;
+            }
+
+            .guarantee-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .guarantee-icon {
+                width: 60px;
+                height: 60px;
             }
 
             .logo {
@@ -948,6 +1000,52 @@
             .cta-primary {
                 padding: 1.5rem 2.5rem;
                 font-size: 1.1rem;
+            }
+
+            .products-container {
+                padding: 0 0.5rem;
+            }
+
+            .featured-product {
+                padding: 1rem;
+            }
+
+            .product-card {
+                padding: 1rem;
+            }
+
+            .bundle-offer {
+                padding: 1.5rem;
+            }
+
+            .student-count {
+                font-size: 2rem;
+            }
+
+            .featured-product h3 {
+                font-size: 1.5rem;
+            }
+
+            .product-subtitle {
+                font-size: 1rem;
+            }
+
+            .bundle-offer h3 {
+                font-size: 1.8rem;
+            }
+
+            .bundle-price {
+                font-size: 2rem;
+            }
+
+            .product-pricing {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .price-new {
+                font-size: 1.5rem;
             }
         }
         
@@ -1000,42 +1098,242 @@
         <div class="particles-container"></div>
         <div class="hero-content">
             <div class="hero-badge">
-                <i data-lucide="book-open"></i>
-                <span>Kurzy a knihy brzy!</span>
+                <i data-lucide="trending-up"></i>
+                <span>Celkový výnos za 5 let: +180%</span>
             </div>
-            <h1>Už brzy k dispozici!</h1>
-            <p class="hero-subtitle">Připravujeme digitální kurzy a investiční příručky, které ti pomohou investovat srozumitelně a efektivně.</p>
+            <h1>Kurzy & Knihy od Investuj Chytře</h1>
+            <p class="hero-subtitle">Naučte se investovat z mých reálných zkušeností a chyb. Žádné teorie z učebnic - jen praktické kroky, které skutečně fungují. Každý produkt vznikl z mých 7 let investování.</p>
             <div class="hero-cta">
-                <a href="#courses" class="cta-primary">
-                    <span>Zjisti více!</span>
+                <a href="#products" class="cta-primary">
+                    <span>Prohlédnout produkty</span>
                     <div class="icon">
-                        <i data-lucide="book"></i>
+                        <i data-lucide="shopping-cart"></i>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Courses Placeholder -->
-    <section class="courses" id="courses">
-        <div class="courses-container">
-            <h2 class="courses-title">Kurzy & Knihy od Investuj Chytře</h2>
-            <p class="courses-text">Chystáme exkluzivní obsah, který tě provede světem investic krok za krokem. Sleduj nás a buď první, kdo se dozví o novinkách!</p>
-            <div class="courses-placeholder reveal">
-                <div class="courses-icon"><i data-lucide="book-open"></i></div>
-                <div class="courses-content">
-                    <h3>Už brzy!</h3>
-                    <p>Připravujeme digitální kurzy a investiční příručky, které ti pomohou zvládnout investování jednoduše a efektivně. Sleduj nás na Instagramu pro nejnovější informace!</p>
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="products-container">
+            <h2 class="products-title">Investiční produkty</h2>
+            <p class="products-text">Každý produkt vznikl z mých reálných zkušeností a chyb za 7 let investování. Žádné teorie z učebnic - jen praktické kroky, které skutečně fungují.</p>
+            
+            <!-- Featured Course -->
+            <div class="featured-product reveal">
+                <div class="product-badge">
+                    <i data-lucide="star"></i>
+                    <span>Nejpopulárnější</span>
+                </div>
+                <div class="product-stats">
+                    <span class="student-count" data-target="847">0</span>
+                    <span class="stats-label">spokojených studentů</span>
+                </div>
+                <h3>ONLINE KURZ: "Portfolio od nuly za 30 dní"</h3>
+                <p class="product-subtitle">Postavte si ziskové portfolio během měsíce – bez složitých teorií, jen praktické kroky</p>
+                <p class="product-description">Sledujte mě v reálném čase, jak analyzuji akcie, rozhoduji se o nákupech a stavím diversifikované portfolio. Každý krok je zdokumentovaný a vysvětlený.</p>
+                
+                <div class="product-features">
+                    <div class="feature-item">
+                        <i data-lucide="play-circle"></i>
+                        <span>30 lekcí po 15-20 minutách denně</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="eye"></i>
+                        <span>Sledujte mé reálné nákupy a prodeje během kurzu</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="search"></i>
+                        <span>Kompletní analýza 15 akcií krok za krokem</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="trending-up"></i>
+                        <span>Jak jsem za 5 let zvýšil portfolio o 180%</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="file-spreadsheet"></i>
+                        <span>Spreadsheet pro sledování výkonnosti</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="calendar"></i>
+                        <span>Přístup na 12 měsíců + celoživotní aktualizace</span>
+                    </div>
+                </div>
+                
+                <div class="product-pricing">
+                    <span class="price-old">4 997 Kč</span>
+                    <span class="price-new">1 997 Kč</span>
+                    <span class="price-save">Ušetříte 3 000 Kč</span>
+                </div>
+                
+                <a href="#" class="product-cta">
+                    <span>Koupit kurz nyní</span>
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="products-grid">
+                <!-- E-příručka -->
+                <div class="product-card reveal">
+                    <div class="product-icon">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+                    <h4>E-PŘÍRUČKA: "Skryté nástrahy začínajících investorů"</h4>
+                    <p class="product-subtitle">67 chyb, které vás můžou stát tisíce korun (a jak se jim vyhnout)</p>
+                    <p class="product-description">Napsal jsem si všechny svoje chyby za 7 let investování. Teď je sdílím, abyste je nemuseli opakovat na vlastní kůži.</p>
+                    
+                    <div class="product-highlights">
+                        <div class="highlight-item">
+                            <i data-lucide="book"></i>
+                            <span>127 stran praktických rad</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="dollar-sign"></i>
+                            <span>Reálné ztráty u každé chyby</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Anti-FOMO checklist zdarma</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-pricing">
+                        <span class="price-old">897 Kč</span>
+                        <span class="price-new">497 Kč</span>
+                    </div>
+                    
+                    <a href="#" class="product-cta secondary">
+                        <span>Koupit e-příručku</span>
+                        <i data-lucide="download"></i>
+                    </a>
+                </div>
+
+                <!-- Psychologie investora -->
+                <div class="product-card reveal">
+                    <div class="product-icon">
+                        <i data-lucide="brain"></i>
+                    </div>
+                    <h4>E-KNIHA: "Psychologie ziskového investora"</h4>
+                    <p class="product-subtitle">Proč 90% lidí na burze prodělává? Není to kvůli analýzám, ale kvůli emocím</p>
+                    <p class="product-description">Naučte se ovládat strach, chamtivost a FOMO. Včetně mého osobního deníku z krachu 2022, kdy jsem ztratil 340 000 Kč za 3 týdny.</p>
+                    
+                    <div class="product-highlights">
+                        <div class="highlight-item">
+                            <i data-lucide="brain"></i>
+                            <span>7 psychologických triků</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="trending-down"></i>
+                            <span>Deník z krachu 2022</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="headphones"></i>
+                            <span>Exkluzivní audio záznamy</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-pricing">
+                        <span class="price-old">1 297 Kč</span>
+                        <span class="price-new">697 Kč</span>
+                    </div>
+                    
+                    <a href="#" class="product-cta secondary">
+                        <span>Koupit e-knihu</span>
+                        <i data-lucide="download"></i>
+                    </a>
+                </div>
+
+                <!-- Dividendová strategie -->
+                <div class="product-card reveal">
+                    <div class="product-icon">
+                        <i data-lucide="coins"></i>
+                    </div>
+                    <h4>E-KNIHA: "Dividendová strategie pro pasivní příjem"</h4>
+                    <p class="product-subtitle">Jak jsem si postavil dividendové portfolio, které mi vydělává 15 000 Kč měsíčně</p>
+                    <p class="product-description">Kompletní průvodce dividendovým investováním včetně mých 23 nejlepších dividendových akcií a ETF. Přesný postup k pasivnímu příjmu 180 000 Kč ročně.</p>
+                    
+                    <div class="product-highlights">
+                        <div class="highlight-item">
+                            <i data-lucide="list"></i>
+                            <span>23 nejlepších dividend. pozic</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="percent"></i>
+                            <span>Výnos z 2% na 6,8%</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="calculator"></i>
+                            <span>Excel kalkulátor FIRE</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-pricing">
+                        <span class="price-old">1 497 Kč</span>
+                        <span class="price-new">797 Kč</span>
+                    </div>
+                    
+                    <a href="#" class="product-cta secondary">
+                        <span>Koupit e-knihu</span>
+                        <i data-lucide="download"></i>
+                    </a>
                 </div>
             </div>
-            
-            <div class="hero-cta" style="margin-top: 4rem;">
-                <a href="https://www.instagram.com/investujchytre" class="cta-primary">
-                    <span>Sleduj na Instagramu</span>
-                    <div class="icon">
-                        <i data-lucide="instagram"></i>
+
+            <!-- Bundle Offer -->
+            <div class="bundle-offer reveal">
+                <div class="bundle-badge">
+                    <i data-lucide="gift"></i>
+                    <span>Nejlepší nabídka</span>
+                </div>
+                <h3>KOMPLETNÍ BALÍČEK - "Investor Pro"</h3>
+                <p class="bundle-subtitle">Získejte všechny produkty za zvýhodněnou cenu</p>
+                
+                <div class="bundle-includes">
+                    <div class="bundle-item">
+                        <i data-lucide="check"></i>
+                        <span>Online kurz (1 997 Kč)</span>
                     </div>
+                    <div class="bundle-item">
+                        <i data-lucide="check"></i>
+                        <span>E-příručka (497 Kč)</span>
+                    </div>
+                    <div class="bundle-item">
+                        <i data-lucide="check"></i>
+                        <span>E-kniha: Psychologie investora (697 Kč)</span>
+                    </div>
+                    <div class="bundle-item">
+                        <i data-lucide="check"></i>
+                        <span>E-kniha: Dividendová strategie (797 Kč)</span>
+                    </div>
+                </div>
+                
+                <div class="bundle-pricing">
+                    <div class="pricing-breakdown">
+                        <span class="bundle-total">Celková hodnota: 3 988 Kč</span>
+                        <span class="bundle-price">Vaše cena: 2 497 Kč</span>
+                        <span class="bundle-save">Ušetříte 1 491 Kč</span>
+                    </div>
+                </div>
+                
+                <a href="#" class="bundle-cta">
+                    <span>Koupit kompletní balíček</span>
+                    <i data-lucide="shopping-bag"></i>
                 </a>
+            </div>
+
+            <!-- Guarantee Section -->
+            <div class="guarantee-section reveal">
+                <div class="guarantee-content">
+                    <div class="guarantee-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <div class="guarantee-text">
+                        <h4>14denní záruka vrácení peněz</h4>
+                        <p>Pokud nebudete spokojeni, vrátíme vám peníze bez udání důvodu. Můj celkový výnos za posledních 5 let: +180% (vše ověřitelné přes veřejné portfolio).</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
