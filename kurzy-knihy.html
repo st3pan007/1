@@ -3,25 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurzy & Knihy | Investuj Chytře</title>
-    <meta name="description" content="Už brzy! Digitální kurzy a investiční příručky od Investuj Chytře. Nauč se investovat srozumitelně a prakticky.">
-    <meta name="keywords" content="investiční kurzy, investiční knihy, finanční vzdělávání, investuj chytře">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Kurzy & Knihy - Investuj Chytře">
-    <meta property="og:description" content="Připravujeme digitální kurzy a investiční knihy pro chytré investování.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://example.com/og-courses.jpg">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        "name": "Investuj Chytře Kurzy & Knihy",
-        "description": "Digitální kurzy a investiční příručky – brzy k dispozici."
-    }
-    </script>
+    <title>Kurzy & Knihy | Investuj Chytře - Premium Edition</title>
+    <meta name="description" content="Prémiové investiční kurzy a knihy od Investuj Chytře. Transformujte své finance s ověřenými strategiemi (+180% výnos za 5 let).">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     
     <style>
         /* CSS Reset & Variables */
@@ -44,16 +32,19 @@
             --secondary-blue: #2ea5ed;
             --accent-blue: #007dff;
             --highlight-cyan: #00d4ff;
+            --premium-gold: #ffd700;
             --text-dark: #1a1a1a;
             --text-light: #ffffff;
             --text-gray: #666666;
             --bg-light: #fafbfc;
+            --bg-premium: #0a0e1a;
             --bg-glass: rgba(255, 255, 255, 0.1);
-            --bg-glass-dark: rgba(0, 0, 0, 0.1);
+            --bg-glass-dark: rgba(0, 0, 0, 0.3);
             --shadow-soft: 0 8px 32px rgba(0, 72, 232, 0.12);
             --shadow-medium: 0 16px 64px rgba(0, 72, 232, 0.16);
             --shadow-strong: 0 24px 96px rgba(0, 72, 232, 0.24);
             --gradient-primary: linear-gradient(135deg, #0048e8 0%, #2ea5ed 50%, #007dff 100%);
+            --gradient-premium: linear-gradient(135deg, #0048e8 0%, #007dff 25%, #00d4ff 50%, #ffd700 100%);
             --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
             --border-glass: 1px solid rgba(255, 255, 255, 0.18);
             --backdrop-blur: blur(20px);
@@ -68,10 +59,21 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            overflow-x: hidden;
             background: var(--bg-light);
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-premium);
+            z-index: 10000;
+            transition: width 0.3s ease;
         }
         
         /* Fluid Typography */
@@ -81,17 +83,20 @@
             line-height: 1.1; 
             letter-spacing: -0.02em;
         }
+        
         h2 { 
             font-size: clamp(2rem, 4vw, 3rem); 
             font-weight: 700; 
             line-height: 1.2; 
             letter-spacing: -0.01em;
         }
+        
         h3 { 
             font-size: clamp(1.5rem, 3vw, 2rem); 
             font-weight: 600; 
-            line-height: 1.3; 
+            line-height: 1.3;
         }
+        
         p { 
             font-size: clamp(1rem, 2vw, 1.125rem); 
             line-height: 1.7; 
@@ -155,78 +160,11 @@
             }
         }
         
-        @keyframes navSlideIn {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
         /* Glassmorphism Effects */
         .glass {
             background: var(--bg-glass);
             backdrop-filter: var(--backdrop-blur);
             border: var(--border-glass);
-        }
-        
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
-        }
-        
-        .preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(1.1);
-        }
-        
-        .loader {
-            width: 80px;
-            height: 80px;
-            position: relative;
-        }
-        
-        .loader::before,
-        .loader::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: var(--text-light);
-            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-        }
-        
-        .loader::before {
-            width: 80px;
-            height: 80px;
-        }
-        
-        .loader::after {
-            width: 60px;
-            height: 60px;
-            top: 10px;
-            left: 10px;
-            animation-direction: reverse;
-            animation-duration: 1s;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
         
         /* Navigation */
@@ -446,6 +384,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         
         .hero::before {
@@ -622,449 +561,660 @@
             background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
         }
 
-        /* Products Section */
-        .products {
-            padding: 6rem 2rem;
-            background: linear-gradient(to bottom, #f8faff 0%, #ffffff 100%);
+        /* Sales Section - Premium Products */
+        .sales-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--bg-light) 0%, #ffffff 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .products-container {
+        .sales-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -25%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 72, 232, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .sales-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
-        .products-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
+        /* Section Header */
+        .section-header {
             text-align: center;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-primary);
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
-        .products-text {
-            text-align: center;
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .section-description {
             font-size: 1.25rem;
-            line-height: 1.8;
             color: var(--text-gray);
-            margin-bottom: 4rem;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
         }
 
-        /* Featured Product */
-        .featured-product {
-            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
-            border-radius: 30px;
-            padding: 3rem;
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(135deg, #ff4458 0%, #ff6b6b 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px;
             margin-bottom: 4rem;
-            box-shadow: 0 20px 80px rgba(0, 72, 232, 0.1);
-            border: 1px solid rgba(0, 72, 232, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(255, 68, 88, 0.3);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
         }
 
-        .featured-product::before {
+        .urgency-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: morphingGlow 10s ease-in-out infinite;
+        }
+
+        .urgency-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 2;
+        }
+
+        .urgency-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .urgency-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        #countdown-timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        /* Product Cards Grid */
+        .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .product-card-premium {
+            background: white;
+            border-radius: 30px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card-premium::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 6px;
-            background: var(--gradient-primary);
+            height: 5px;
+            background: var(--gradient-premium);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
-        .featured-product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 100px rgba(0, 72, 232, 0.15);
+        .product-card-premium:hover::before {
+            transform: scaleX(1);
         }
 
-        .product-badge {
+        .product-card-premium:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 72, 232, 0.15);
+        }
+
+        .product-label {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
-            color: var(--text-light);
+            background: var(--gradient-premium);
+            color: white;
             padding: 0.5rem 1rem;
-            border-radius: 25px;
+            border-radius: 50px;
             font-size: 0.875rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 72, 232, 0.3);
         }
 
-        .product-stats {
-            display: flex;
-            align-items: baseline;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .student-count {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-blue);
-            transition: transform 0.3s ease;
-        }
-
-        .stats-label {
-            font-size: 1.125rem;
-            color: var(--text-gray);
-        }
-
-        .featured-product h3 {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
+        .product-title {
+            font-size: 1.75rem;
             font-weight: 700;
-            color: var(--text-dark);
             margin-bottom: 1rem;
-            line-height: 1.2;
+            color: var(--text-dark);
         }
 
         .product-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             color: var(--primary-blue);
-            font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
         }
 
         .product-description {
-            font-size: 1.125rem;
-            line-height: 1.7;
             color: var(--text-gray);
+            line-height: 1.8;
             margin-bottom: 2rem;
         }
 
-        .product-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+        /* Value Points */
+        .value-points {
+            margin-bottom: 2rem;
         }
 
-        .feature-item {
+        .value-point {
             display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            background: rgba(0, 72, 232, 0.05);
-            border-radius: 12px;
-            transition: all 0.2s ease;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(0, 72, 232, 0.03);
+            border-radius: 15px;
+            transition: all 0.3s ease;
         }
 
-        .feature-item:hover {
-            background: rgba(0, 72, 232, 0.1);
+        .value-point:hover {
+            background: rgba(0, 72, 232, 0.08);
             transform: translateX(5px);
         }
 
-        .feature-item i {
-            color: var(--primary-blue);
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .product-pricing {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .price-old {
-            font-size: 1.5rem;
-            color: #999;
-            text-decoration: line-through;
-        }
-
-        .price-new {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-blue);
-        }
-
-        .price-save {
-            background: rgba(46, 165, 237, 0.1);
-            color: var(--secondary-blue);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .product-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
+        .value-icon {
+            width: 24px;
+            height: 24px;
             background: var(--gradient-primary);
-            color: var(--text-light);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.125rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(0, 72, 232, 0.3);
-        }
-
-        .product-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(0, 72, 232, 0.4);
-        }
-
-        /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .product-card {
-            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
-            border-radius: 25px;
-            padding: 2rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 72, 232, 0.08);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.15);
-            border-color: transparent;
-        }
-
-        .product-card:hover::before {
-            opacity: 0.03;
-        }
-
-        .product-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 32px rgba(0, 72, 232, 0.3);
-        }
-
-        .product-card h4 {
-            font-size: 1.375rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-            line-height: 1.3;
-        }
-
-        .product-highlights {
-            margin: 1.5rem 0;
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-gray);
-        }
-
-        .highlight-item i {
-            color: var(--secondary-blue);
-            flex-shrink: 0;
-        }
-
-        .product-cta.secondary {
-            background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-            box-shadow: none;
-        }
-
-        .product-cta.secondary:hover {
-            background: var(--gradient-primary);
-            color: var(--text-light);
-            border-color: transparent;
-            box-shadow: 0 10px 40px rgba(0, 72, 232, 0.3);
-        }
-
-        /* Bundle Offer */
-        .bundle-offer {
-            background: var(--gradient-primary);
-            color: var(--text-light);
-            border-radius: 30px;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 3rem;
-        }
-
-        .bundle-offer::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-            animation: morphingGlow 10s ease-in-out infinite;
-        }
-
-        .bundle-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .bundle-offer h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .bundle-subtitle {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .bundle-includes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .bundle-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            transition: all 0.2s ease;
-        }
-
-        .bundle-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(5px);
-        }
-
-        .bundle-pricing {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-breakdown {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .bundle-total {
-            font-size: 1.125rem;
-            opacity: 0.8;
-            text-decoration: line-through;
-        }
-
-        .bundle-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-
-        .bundle-save {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-        }
-
-        .bundle-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: white;
-            color: var(--primary-blue);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.125rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            margin: 0 auto;
-            display: flex;
-            width: fit-content;
-        }
-
-        .bundle-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Guarantee Section */
-        .guarantee-section {
-            text-align: center;
-            padding: 3rem;
-            background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
-            border-radius: 25px;
-            border: 2px solid rgba(0, 72, 232, 0.1);
-        }
-
-        .guarantee-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .guarantee-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #48bb78, #38a169);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 10px 40px rgba(72, 187, 120, 0.3);
+        }
+
+        .value-icon i {
+            width: 14px;
+            height: 14px;
+            color: white;
+        }
+
+        .value-text {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .price-wrapper {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-original {
+            font-size: 1.5rem;
+            color: #999;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .price-current {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff4458, #ff6b6b);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 60px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 72, 232, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 72, 232, 0.4);
+        }
+
+        .cta-button-icon {
+            background: rgba(255, 255, 255, 0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .cta-button:hover .cta-button-icon {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-gray);
+        }
+
+        .trust-badge i {
+            color: #4CAF50;
+        }
+
+        /* Master Bundle */
+        .master-bundle {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 40px;
+            padding: 4rem;
+            margin: 5rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+        }
+
+        .master-bundle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            animation: morphingGlow 15s ease-in-out infinite;
+        }
+
+        .bundle-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bundle-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--premium-gold), #ffed4e);
+            color: #1a1a2e;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .bundle-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .bundle-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+        }
+
+        .bundle-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bundle-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .bundle-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .bundle-item-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-premium);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .bundle-item-title {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .bundle-item-value {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        .bundle-pricing {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bundle-price-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .bundle-original-price {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+        }
+
+        .bundle-arrow {
+            color: var(--premium-gold);
+            font-size: 2rem;
+        }
+
+        .bundle-final-price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--premium-gold), #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bundle-savings {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--premium-gold);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .bundle-cta {
+            background: linear-gradient(135deg, var(--premium-gold), #ffed4e);
+            color: #1a1a2e;
+            padding: 1.5rem 3rem;
+            border-radius: 60px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .bundle-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: white;
+            border-radius: 40px;
+            margin: 5rem 0;
+            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.08);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 72, 232, 0.1);
+        }
+
+        .testimonial-stars {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .author-role {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+        }
+
+        /* Guarantee Section */
+        .guarantee {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            margin: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guarantee::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
+            animation: morphingGlow 10s ease-in-out infinite;
+        }
+
+        .guarantee-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .guarantee-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
         }
 
         .guarantee-icon i {
@@ -1073,65 +1223,34 @@
             color: white;
         }
 
-        .guarantee-text h4 {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
+        .guarantee-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2e7d32;
+            margin-bottom: 1rem;
         }
 
-        .guarantee-text p {
-            color: var(--text-gray);
-            line-height: 1.6;
+        .guarantee-text {
+            font-size: 1.125rem;
+            color: #388e3c;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
-        
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
+
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .nav-links {
-                gap: 0.25rem;
-                padding: 0.5rem;
+            .products-showcase {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto 5rem;
             }
             
-            .nav-links a {
-                padding: 0.75rem 1rem;
-                font-size: 0.9rem;
+            .master-bundle {
+                padding: 3rem 2rem;
             }
-
-            .logo {
-                max-width: 250px;
-                height: 50px;
-                padding: 0.5rem 0.75rem;
-            }
-
-            .products {
-                padding: 4rem 1.5rem;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 1.5rem;
-            }
-
-            .featured-product {
-                padding: 2rem;
-            }
-
-            .product-features {
-                grid-template-columns: 1fr;
-            }
-
-            .bundle-includes {
+            
+            .bundle-content {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
         }
@@ -1153,7 +1272,7 @@
                 border: 1px solid rgba(0, 72, 232, 0.2);
                 z-index: 1001;
             }
-
+            
             .navbar.scrolled .nav-links {
                 background: rgba(255, 255, 255, 0.95);
                 border-color: rgba(0, 72, 232, 0.2);
@@ -1202,60 +1321,50 @@
                 justify-content: center;
             }
             
-            .products {
-                padding: 3rem 1rem;
-            }
-
-            .products-container {
-                padding: 0 1rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .sales-section {
+                padding: 5rem 1rem;
             }
             
-            .featured-product {
-                padding: 1.5rem;
-                text-align: center;
-            }
-
-            .product-stats {
-                justify-content: center;
-                margin-bottom: 1rem;
-            }
-
-            .product-card {
-                padding: 1.5rem;
-                text-align: center;
-            }
-
-            .product-highlights {
-                text-align: left;
-            }
-
-            .bundle-offer {
-                padding: 2rem;
-            }
-
-            .bundle-includes {
-                grid-template-columns: 1fr;
-            }
-
-            .guarantee-content {
+            .urgency-banner {
                 flex-direction: column;
                 text-align: center;
+                padding: 2rem 1rem;
+            }
+            
+            .urgency-content {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-card-premium {
+                padding: 2rem;
+            }
+            
+            .master-bundle {
+                margin: 3rem 0;
+                border-radius: 25px;
+            }
+            
+            .bundle-price-comparison {
+                flex-direction: column;
                 gap: 1rem;
             }
-
-            .logo {
-                max-width: 200px;
-                height: 40px;
+            
+            .bundle-final-price {
+                font-size: 2.5rem;
             }
-
-            .product-pricing {
-                justify-content: center;
-                flex-wrap: wrap;
+            
+            .testimonials {
+                margin: 3rem 0;
+                padding: 3rem 0;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
             }
         }
         
@@ -1274,7 +1383,7 @@
                 font-size: 1.6rem;
                 padding: 0.25rem 0.5rem;
             }
-
+            
             .logo.fallback {
                 font-size: 1.2rem;
             }
@@ -1283,98 +1392,36 @@
                 padding: 1.5rem 2.5rem;
                 font-size: 1.1rem;
             }
-
-            .products {
-                padding: 2rem 0.5rem;
+            
+            .products-showcase {
+                gap: 2rem;
             }
-
-            .products-container {
-                padding: 0 0.5rem;
-            }
-
-            .featured-product {
-                padding: 1rem;
-            }
-
-            .product-card {
-                padding: 1rem;
-            }
-
-            .bundle-offer {
+            
+            .product-card-premium {
                 padding: 1.5rem;
+                border-radius: 20px;
             }
-
-            .student-count {
-                font-size: 1.5rem;
+            
+            .bundle-title {
+                font-size: 1.75rem;
             }
-
-            .featured-product h3 {
-                font-size: 1.25rem;
+            
+            .bundle-cta {
+                padding: 1.25rem 2rem;
+                font-size: 1.1rem;
             }
-
-            .product-subtitle {
-                font-size: 1rem;
+            
+            .guarantee {
+                padding: 2rem 1rem;
             }
-
-            .bundle-offer h3 {
-                font-size: 1.5rem;
-            }
-
-            .bundle-price {
-                font-size: 2rem;
-            }
-
-            .product-pricing {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .price-new {
-                font-size: 1.5rem;
-            }
-
-            .product-cta, .bundle-cta {
-                padding: 0.875rem 1.75rem;
-                font-size: 1rem;
-            }
-
-            .guarantee-content {
-                padding: 1rem;
-            }
-
-            .guarantee-icon {
-                width: 60px;
-                height: 60px;
-            }
-
-            .guarantee-icon i {
-                width: 30px;
-                height: 30px;
-            }
-        }
-        
-        /* Optimized for Performance */
-        .gpu-accelerated {
-            transform: translateZ(0);
-            will-change: transform;
-        }
-        
-        .no-select {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
     </style>
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="loader"></div>
-    </div>
-
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -1404,397 +1451,313 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <i data-lucide="trending-up"></i>
-                <span>Celkový výnos za 5 let: +180%</span>
+                <span>+180% za 5 let ověřený výnos</span>
             </div>
-            <h1>Kurzy & Knihy od Investuj Chytře</h1>
-            <p class="hero-subtitle">Naučte se investovat z mých reálných zkušeností a chyb. Žádné teorie z učebnic - jen praktické kroky, které skutečně fungují. Každý produkt vznikl z mých 7 let investování.</p>
+            <h1>Konečně investiční vzdělávání, které funguje</h1>
+            <p class="hero-subtitle">Žádné prázdné teorie. Žádné složité grafy. Jen ověřené strategie, které mi vydělaly přes 1,5 milionu korun. Teď je předávám vám.</p>
             <div class="hero-cta">
                 <a href="#products" class="cta-primary">
-                    <span>Prohlédnout produkty</span>
+                    <span>Objevte produkty</span>
                     <div class="icon">
-                        <i data-lucide="shopping-cart"></i>
+                        <i data-lucide="arrow-down"></i>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="products-container">
-            <h2 class="products-title">Investiční produkty</h2>
-            <p class="products-text">Každý produkt vznikl z mých reálných zkušeností a chyb za 7 let investování. Žádné teorie z učebnic - jen praktické kroky, které skutečně fungují.</p>
-            
-            <!-- Featured Course -->
-            <div class="featured-product reveal">
-                <div class="product-badge">
-                    <i data-lucide="star"></i>
-                    <span>Nejpopulárnější</span>
-                </div>
-                <div class="product-stats">
-                    <span class="student-count" data-target="847">0</span>
-                    <span class="stats-label">spokojených studentů</span>
-                </div>
-                <h3>ONLINE KURZ: "Portfolio od nuly za 30 dní"</h3>
-                <p class="product-subtitle">Postavte si ziskové portfolio během měsíce – bez složitých teorií, jen praktické kroky</p>
-                <p class="product-description">Sledujte mě v reálném čase, jak analyzuji akcie, rozhoduji se o nákupech a stavím diversifikované portfolio. Každý krok je zdokumentovaný a vysvětlený.</p>
-                
-                <div class="product-features">
-                    <div class="feature-item">
-                        <i data-lucide="play-circle"></i>
-                        <span>30 lekcí po 15-20 minutách denně</span>
-                    </div>
-                    <div class="feature-item">
-                        <i data-lucide="eye"></i>
-                        <span>Sledujte mé reálné nákupy a prodeje během kurzu</span>
-                    </div>
-                    <div class="feature-item">
-                        <i data-lucide="search"></i>
-                        <span>Kompletní analýza 15 akcií krok za krokem</span>
-                    </div>
-                    <div class="feature-item">
-                        <i data-lucide="trending-up"></i>
-                        <span>Jak jsem za 5 let zvýšil portfolio o 180%</span>
-                    </div>
-                    <div class="feature-item">
-                        <i data-lucide="file-spreadsheet"></i>
-                        <span>Spreadsheet pro sledování výkonnosti</span>
-                    </div>
-                    <div class="feature-item">
-                        <i data-lucide="calendar"></i>
-                        <span>Přístup na 12 měsíců + celoživotní aktualizace</span>
-                    </div>
-                </div>
-                
-                <div class="product-pricing">
-                    <span class="price-old">4 997 Kč</span>
-                    <span class="price-new">1 997 Kč</span>
-                    <span class="price-save">Ušetříte 3 000 Kč</span>
-                </div>
-                
-                <a href="#" class="product-cta">
-                    <span>Koupit kurz nyní</span>
-                    <i data-lucide="arrow-right"></i>
-                </a>
+    <!-- Sales Section -->
+    <section class="sales-section" id="products">
+        <div class="sales-container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <p class="section-subtitle">EXKLUZIVNÍ NABÍDKA</p>
+                <h2 class="section-title">Získejte přístup k mým nejcennějším strategiím</h2>
+                <p class="section-description">Po 7 letech testování, chyb a úspěchů jsem vytvořil systém, který skutečně funguje. Více než 847 spokojených studentů již mění své finanční životy.</p>
             </div>
 
-            <!-- Product Grid -->
-            <div class="products-grid">
-                <!-- E-příručka -->
-                <div class="product-card reveal">
-                    <div class="product-icon">
-                        <i data-lucide="alert-triangle"></i>
+            <!-- Urgency Banner -->
+            <div class="urgency-banner">
+                <div class="urgency-content">
+                    <div class="urgency-icon">
+                        <i data-lucide="clock"></i>
                     </div>
-                    <h4>E-PŘÍRUČKA: "Skryté nástrahy začínajících investorů"</h4>
-                    <p class="product-subtitle">67 chyb, které vás můžou stát tisíce korun (a jak se jim vyhnout)</p>
-                    <p class="product-description">Napsal jsem si všechny svoje chyby za 7 let investování. Teď je sdílím, abyste je nemuseli opakovat na vlastní kůži.</p>
+                    <p class="urgency-text">Limitovaná nabídka se slevou 60% končí za:</p>
+                </div>
+                <div id="countdown-timer">23:59:59</div>
+            </div>
+
+            <!-- Products Showcase -->
+            <div class="products-showcase">
+                <!-- Product 1: Online Course -->
+                <div class="product-card-premium">
+                    <div class="product-label">
+                        <i data-lucide="star"></i>
+                        <span>BESTSELLER</span>
+                    </div>
+                    <h3 class="product-title">Portfolio od nuly za 30 dní</h3>
+                    <p class="product-subtitle">Online kurz s reálnými obchody</p>
+                    <p class="product-description">Sledujte mě krok za krokem, jak stavím portfolio od úplného začátku. Žádná teorie – jen praktické obchodování v reálném čase.</p>
                     
-                    <div class="product-highlights">
-                        <div class="highlight-item">
-                            <i data-lucide="book"></i>
-                            <span>127 stran praktických rad</span>
+                    <div class="value-points">
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">30 video lekcí (15-20 min denně) s reálnými nákupy</p>
                         </div>
-                        <div class="highlight-item">
-                            <i data-lucide="dollar-sign"></i>
-                            <span>Reálné ztráty u každé chyby</span>
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">Kompletní analýza 15 akcií včetně mých osobních pozic</p>
                         </div>
-                        <div class="highlight-item">
-                            <i data-lucide="check-circle"></i>
-                            <span>Anti-FOMO checklist zdarma</span>
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">Excel tracker pro sledování vašeho portfolia</p>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">12 měsíců přístupu + doživotní aktualizace</p>
                         </div>
                     </div>
-                    
-                    <div class="product-pricing">
-                        <span class="price-old">897 Kč</span>
-                        <span class="price-new">497 Kč</span>
+
+                    <div class="pricing-section">
+                        <div class="price-badge">UŠETŘÍTE 3 000 Kč</div>
+                        <div class="price-wrapper">
+                            <span class="price-original">4 997 Kč</span>
+                            <span class="price-current">1 997 Kč</span>
+                        </div>
                     </div>
-                    
-                    <a href="#" class="product-cta secondary">
-                        <span>Koupit e-příručku</span>
-                        <i data-lucide="download"></i>
-                    </a>
+
+                    <div class="cta-section">
+                        <a href="#" class="cta-button">
+                            <span>Získat okamžitý přístup</span>
+                            <div class="cta-button-icon">
+                                <i data-lucide="arrow-right"></i>
+                            </div>
+                        </a>
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i data-lucide="shield-check"></i>
+                                <span>SSL zabezpečení</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i data-lucide="rotate-ccw"></i>
+                                <span>14denní záruka</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Psychologie investora -->
-                <div class="product-card reveal">
-                    <div class="product-icon">
+                <!-- Product 2: E-book Psychology -->
+                <div class="product-card-premium">
+                    <div class="product-label">
                         <i data-lucide="brain"></i>
+                        <span>NOVÁ KNIHA</span>
                     </div>
-                    <h4>E-KNIHA: "Psychologie ziskového investora"</h4>
-                    <p class="product-subtitle">Proč 90% lidí na burze prodělává? Není to kvůli analýzám, ale kvůli emocím</p>
-                    <p class="product-description">Naučte se ovládat strach, chamtivost a FOMO. Včetně mého osobního deníku z krachu 2022, kdy jsem ztratil 340 000 Kč za 3 týdny.</p>
+                    <h3 class="product-title">Psychologie ziskového investora</h3>
+                    <p class="product-subtitle">Ovládněte své emoce, ovládněte trh</p>
+                    <p class="product-description">Přečtěte si můj osobní deník z krachu 2022, kdy jsem ztratil 340 000 Kč. Naučte se z mých chyb a vybudujte si mentální sílu úspěšného investora.</p>
                     
-                    <div class="product-highlights">
-                        <div class="highlight-item">
+                    <div class="value-points">
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">7 psychologických triků pro kontrolu emocí</p>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">Reálné záznamy z krachu 2022 (audio bonusy)</p>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">Strategie proti FOMO a panice</p>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-icon">
+                                <i data-lucide="check"></i>
+                            </div>
+                            <p class="value-text">195 stran praktických rad</p>
+                        </div>
+                    </div>
+
+                    <div class="pricing-section">
+                        <div class="price-badge">UŠETŘÍTE 600 Kč</div>
+                        <div class="price-wrapper">
+                            <span class="price-original">1 297 Kč</span>
+                            <span class="price-current">697 Kč</span>
+                        </div>
+                    </div>
+
+                    <div class="cta-section">
+                        <a href="#" class="cta-button">
+                            <span>Stáhnout e-knihu</span>
+                            <div class="cta-button-icon">
+                                <i data-lucide="download"></i>
+                            </div>
+                        </a>
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i data-lucide="file-text"></i>
+                                <span>PDF + Audio</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i data-lucide="clock"></i>
+                                <span>Okamžité doručení</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Master Bundle -->
+            <div class="master-bundle">
+                <div class="bundle-header">
+                    <div class="bundle-label">
+                        <i data-lucide="crown"></i>
+                        <span>NEJLEPŠÍ HODNOTA</span>
+                    </div>
+                    <h3 class="bundle-title">Kompletní balíček Investor PRO</h3>
+                    <p class="bundle-subtitle">Vše, co potřebujete pro úspěšné investování na jednom místě</p>
+                </div>
+
+                <div class="bundle-content">
+                    <div class="bundle-item">
+                        <div class="bundle-item-icon">
+                            <i data-lucide="play-circle"></i>
+                        </div>
+                        <h4 class="bundle-item-title">Online kurz</h4>
+                        <p class="bundle-item-value">Hodnota: 1 997 Kč</p>
+                    </div>
+                    <div class="bundle-item">
+                        <div class="bundle-item-icon">
                             <i data-lucide="brain"></i>
-                            <span>7 psychologických triků</span>
                         </div>
-                        <div class="highlight-item">
-                            <i data-lucide="trending-down"></i>
-                            <span>Deník z krachu 2022</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i data-lucide="headphones"></i>
-                            <span>Exkluzivní audio záznamy</span>
-                        </div>
+                        <h4 class="bundle-item-title">Psychologie investora</h4>
+                        <p class="bundle-item-value">Hodnota: 697 Kč</p>
                     </div>
-                    
-                    <div class="product-pricing">
-                        <span class="price-old">1 297 Kč</span>
-                        <span class="price-new">697 Kč</span>
+                    <div class="bundle-item">
+                        <div class="bundle-item-icon">
+                            <i data-lucide="alert-triangle"></i>
+                        </div>
+                        <h4 class="bundle-item-title">67 chyb začátečníků</h4>
+                        <p class="bundle-item-value">Hodnota: 497 Kč</p>
                     </div>
-                    
-                    <a href="#" class="product-cta secondary">
-                        <span>Koupit e-knihu</span>
-                        <i data-lucide="download"></i>
-                    </a>
+                    <div class="bundle-item">
+                        <div class="bundle-item-icon">
+                            <i data-lucide="coins"></i>
+                        </div>
+                        <h4 class="bundle-item-title">Dividendová strategie</h4>
+                        <p class="bundle-item-value">Hodnota: 797 Kč</p>
+                    </div>
                 </div>
 
-                <!-- Dividendová strategie -->
-                <div class="product-card reveal">
-                    <div class="product-icon">
-                        <i data-lucide="coins"></i>
-                    </div>
-                    <h4>E-KNIHA: "Dividendová strategie pro pasivní příjem"</h4>
-                    <p class="product-subtitle">Jak jsem si postavil dividendové portfolio, které mi vydělává 15 000 Kč měsíčně</p>
-                    <p class="product-description">Kompletní průvodce dividendovým investováním včetně mých 23 nejlepších dividendových akcií a ETF. Přesný postup k pasivnímu příjmu 180 000 Kč ročně.</p>
-                    
-                    <div class="product-highlights">
-                        <div class="highlight-item">
-                            <i data-lucide="list"></i>
-                            <span>23 nejlepších dividend. pozic</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i data-lucide="percent"></i>
-                            <span>Výnos z 2% na 6,8%</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i data-lucide="calculator"></i>
-                            <span>Excel kalkulátor FIRE</span>
-                        </div>
-                    </div>
-                    
-                    <div class="product-pricing">
-                        <span class="price-old">1 497 Kč</span>
-                        <span class="price-new">797 Kč</span>
-                    </div>
-                    
-                    <a href="#" class="product-cta secondary">
-                        <span>Koupit e-knihu</span>
-                        <i data-lucide="download"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bundle Offer -->
-            <div class="bundle-offer reveal">
-                <div class="bundle-badge">
-                    <i data-lucide="gift"></i>
-                    <span>Nejlepší nabídka</span>
-                </div>
-                <h3>KOMPLETNÍ BALÍČEK - "Investor Pro"</h3>
-                <p class="bundle-subtitle">Získejte všechny produkty za zvýhodněnou cenu</p>
-                
-                <div class="bundle-includes">
-                    <div class="bundle-item">
-                        <i data-lucide="check"></i>
-                        <span>Online kurz (1 997 Kč)</span>
-                    </div>
-                    <div class="bundle-item">
-                        <i data-lucide="check"></i>
-                        <span>E-příručka (497 Kč)</span>
-                    </div>
-                    <div class="bundle-item">
-                        <i data-lucide="check"></i>
-                        <span>E-kniha: Psychologie investora (697 Kč)</span>
-                    </div>
-                    <div class="bundle-item">
-                        <i data-lucide="check"></i>
-                        <span>E-kniha: Dividendová strategie (797 Kč)</span>
-                    </div>
-                </div>
-                
                 <div class="bundle-pricing">
-                    <div class="pricing-breakdown">
-                        <span class="bundle-total">Celková hodnota: 3 988 Kč</span>
-                        <span class="bundle-price">Vaše cena: 2 497 Kč</span>
-                        <span class="bundle-save">Ušetříte 1 491 Kč</span>
+                    <div class="bundle-price-comparison">
+                        <span class="bundle-original-price">3 988 Kč</span>
+                        <span class="bundle-arrow">→</span>
+                        <span class="bundle-final-price">2 497 Kč</span>
                     </div>
+                    <div class="bundle-savings">Ušetříte neuvěřitelných 1 491 Kč!</div>
+                    <a href="#" class="bundle-cta">
+                        <span>Získat kompletní balíček</span>
+                        <i data-lucide="shopping-bag"></i>
+                    </a>
                 </div>
-                
-                <a href="#" class="bundle-cta">
-                    <span>Koupit kompletní balíček</span>
-                    <i data-lucide="shopping-bag"></i>
-                </a>
             </div>
 
-            <!-- Guarantee Section -->
-            <div class="guarantee-section reveal">
+            <!-- Testimonials -->
+            <div class="testimonials">
+                <div class="testimonials-header">
+                    <h3>Co říkají naši studenti</h3>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Za 3 měsíce jsem vydělal zpět 5x cenu kurzu. Konečně někdo, kdo učí z praxe, ne z učebnic."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MK</div>
+                            <div class="author-info">
+                                <p class="author-name">Martin K.</p>
+                                <p class="author-role">Začínající investor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Psychologie investora mi otevřela oči. Díky ní jsem přestala panikařit při poklesech."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PS</div>
+                            <div class="author-info">
+                                <p class="author-name">Petra S.</p>
+                                <p class="author-role">Aktivní investorka</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Dividendová strategie = game changer. Mám pasivní příjem 12 000 Kč měsíčně."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">TN</div>
+                            <div class="author-info">
+                                <p class="author-name">Tomáš N.</p>
+                                <p class="author-role">Dividendový investor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guarantee -->
+            <div class="guarantee">
                 <div class="guarantee-content">
                     <div class="guarantee-icon">
                         <i data-lucide="shield-check"></i>
                     </div>
-                    <div class="guarantee-text">
-                        <h4>14denní záruka vrácení peněz</h4>
-                        <p>Pokud nebudete spokojeni, vrátíme vám peníze bez udání důvodu. Můj celkový výnos za posledních 5 let: +180% (vše ověřitelné přes veřejné portfolio).</p>
-                    </div>
+                    <h3 class="guarantee-title">100% záruka spokojenosti</h3>
+                    <p class="guarantee-text">Pokud během 14 dnů zjistíte, že produkty nesplňují vaše očekávání, vrátíme vám peníze. Bez otázek, bez problémů. Věřím si natolik, že vám tuto záruku můžu nabídnout.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        // Initialize Lucide Icons immediately
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize icons
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-            
-            // Load logo
+        // Initialize all features
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initProgressBar();
+            initParticles();
+            initNavbar();
+            initSmoothScroll();
+            initGSAPAnimations();
+            initCountdown();
             loadLogo();
-            
-            // Create particles
-            createParticles();
-            
-            // Initialize parallax only on desktop
-            if (window.innerWidth > 768) {
-                initParallax();
-            }
-            
-            // Start student count updates after 5 seconds
-            setTimeout(() => {
-                setInterval(updateStudentCount, 45000);
-            }, 5000);
         });
 
-        // Preloader
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                setTimeout(() => {
-                    preloader.classList.add('hidden');
-                }, 800);
-            }
-        });
-
-        // Scroll animation
-        let scrollTimeout;
-        const navbar = document.getElementById('navbar');
-        
-        function handleScroll() {
-            if (navbar) {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            }
+        // Progress Bar
+        function initProgressBar() {
+            const progressBar = document.getElementById('progress-bar');
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
+                progressBar.style.width = (scrolled / maxHeight) * 100 + '%';
+            }, { passive: true });
         }
 
-        window.addEventListener('scroll', function() {
-            if (!scrollTimeout) {
-                scrollTimeout = setTimeout(() => {
-                    handleScroll();
-                    scrollTimeout = null;
-                }, 16);
-            }
-        }, { passive: true });
-
-        // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('nav-links');
-
-            if (hamburger && navLinks) {
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                });
-
-                navLinks.addEventListener('click', (e) => {
-                    if (e.target.tagName === 'A') {
-                        hamburger.classList.remove('active');
-                        navLinks.classList.remove('active');
-                    }
-                });
-            }
-        });
-
-        // Smooth scrolling
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerOffset = 80;
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-
-        // Animated counter for student count
-        function animateCounter(element, target, duration = 2000) {
-            if (!element) return;
-            
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current);
-            }, 16);
-        }
-
-        // Scroll reveal animations with counter animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        
-                        // Animate counters when they come into view
-                        const counters = entry.target.querySelectorAll('.student-count');
-                        counters.forEach(counter => {
-                            const target = parseInt(counter.getAttribute('data-target'));
-                            if (target && counter.textContent === '0') {
-                                animateCounter(counter, target, 1500);
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all reveal elements
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-            });
-        });
-
-        // Particles animation
-        function createParticles() {
+        // Particles Animation
+        function initParticles() {
             const particlesContainer = document.querySelector('.particles-container');
-            if (!particlesContainer) return;
-            
-            const particleCount = window.innerWidth > 768 ? 30 : 15;
+            const particleCount = window.innerWidth > 768 ? 40 : 20;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -1810,30 +1773,142 @@
             }
         }
 
-        // Parallax effect
-        function initParallax() {
-            let parallaxTimeout;
+        // GSAP Animations
+        function initGSAPAnimations() {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
             
-            window.addEventListener('scroll', () => {
-                if (!parallaxTimeout) {
-                    parallaxTimeout = requestAnimationFrame(() => {
-                        const scrolled = window.pageYOffset;
-                        const hero = document.querySelector('.hero');
-                        
-                        if (hero && scrolled < hero.offsetHeight) {
-                            hero.style.transform = `translateY(${scrolled * 0.1}px)`;
-                        }
-                        parallaxTimeout = null;
-                    });
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate product cards
+            gsap.utils.toArray('.product-card-premium').forEach((card, i) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    delay: i * 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        once: true
+                    }
+                });
+            });
+
+            // Animate bundle
+            gsap.from('.master-bundle', {
+                opacity: 0,
+                scale: 0.95,
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.master-bundle',
+                    start: 'top 80%',
+                    once: true
                 }
-            }, { passive: true });
+            });
+
+            // Animate testimonials
+            gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    x: i % 2 === 0 ? -50 : 50,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+            });
         }
 
-        // Logo loading
+        // Countdown Timer
+        function initCountdown() {
+            const countdownEl = document.getElementById('countdown-timer');
+            if (!countdownEl) return;
+            
+            // Set countdown to 24 hours from now
+            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                if (distance < 0) {
+                    countdownEl.textContent = '00:00:00';
+                    return;
+                }
+                
+                const hours = Math.floor(distance / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                countdownEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Navigation
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(() => {
+                        if (window.scrollY > 50) {
+                            navbar.classList.add('scrolled');
+                        } else {
+                            navbar.classList.remove('scrolled');
+                        }
+                        scrollTimeout = null;
+                    }, 16);
+                }
+            }, { passive: true });
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            navLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
+        // Smooth Scrolling
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerOffset = 60;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Logo Loading
         function loadLogo() {
             const logo = document.getElementById('logo');
-            if (!logo) return;
-            
             const img = new Image();
             
             img.onload = function() {
@@ -1844,51 +1919,11 @@
             img.onerror = function() {
                 logo.innerHTML = 'IC';
                 logo.classList.add('fallback');
-                if (window.innerWidth <= 480) {
-                    logo.style.fontSize = '1.2rem';
-                } else {
-                    logo.style.fontSize = '1.6rem';
-                }
+                logo.style.fontSize = '1.6rem';
             };
             
             img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/logo1.png';
         }
-
-        // Random student count updates
-        function updateStudentCount() {
-            const studentCountEl = document.querySelector('.student-count');
-            if (!studentCountEl) return;
-            
-            const currentCount = parseInt(studentCountEl.textContent) || 847;
-            if (Math.random() < 0.15) { // 15% chance every interval
-                const newCount = currentCount + Math.floor(Math.random() * 3) + 1; // Add 1-3
-                studentCountEl.textContent = newCount;
-                studentCountEl.setAttribute('data-target', newCount);
-                
-                // Add a small pulse animation
-                studentCountEl.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    studentCountEl.style.transform = 'scale(1)';
-                }, 300);
-            }
-        }
-
-        // Handle resize events
-        window.addEventListener('resize', function() {
-            // Disable animations on mobile for better performance
-            if (window.innerWidth <= 768) {
-                document.querySelectorAll('.product-card, .featured-product').forEach(card => {
-                    card.style.transform = '';
-                });
-            }
-        }, { passive: true });
-
-        // Force icon refresh after a delay
-        setTimeout(() => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        }, 1000);
     </script>
 </body>
 </html>
