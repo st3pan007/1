@@ -820,7 +820,7 @@
             transform: translateY(0);
         }
         
-        /* Responsive Design */
+        /* Responsive Design - Fixed */
         @media (max-width: 1024px) {
             .nav-links {
                 gap: 0.25rem;
@@ -838,22 +838,32 @@
                 padding: 0.5rem 0.75rem;
             }
 
+            .products {
+                padding: 6rem 1.5rem;
+            }
+
             .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 1.5rem;
             }
 
             .featured-product {
-                padding: 2rem;
+                padding: 1.5rem;
+                text-align: center;
             }
 
             .product-features {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
 
             .bundle-includes {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 text-align: center;
+            }
+
+            .product-stats {
+                justify-content: center;
             }
         }
         
@@ -924,15 +934,16 @@
             }
             
             .products {
-                padding: 6rem 1rem;
+                padding: 4rem 1rem;
             }
 
             .products-container {
-                padding: 0 1rem;
+                padding: 0 0.5rem;
             }
 
             .products-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .featured-product {
@@ -941,39 +952,59 @@
             }
 
             .featured-product h3 {
-                font-size: 1.8rem;
+                font-size: clamp(1.3rem, 4vw, 1.6rem);
             }
 
             .product-stats {
                 justify-content: center;
+                margin-bottom: 1rem;
             }
 
             .product-card {
                 padding: 1.5rem;
+                text-align: center;
+            }
+
+            .product-highlights {
+                text-align: center;
+            }
+
+            .highlight-item {
+                justify-content: center;
             }
 
             .bundle-offer {
-                padding: 2rem;
+                padding: 1.5rem;
             }
 
             .bundle-offer h3 {
-                font-size: 2rem;
+                font-size: clamp(1.4rem, 4vw, 1.8rem);
+            }
+
+            .bundle-includes {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
             .guarantee-content {
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
+                padding: 1.5rem;
             }
 
             .guarantee-icon {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
             }
 
             .logo {
                 max-width: 200px;
                 height: 40px;
+            }
+
+            .product-pricing {
+                justify-content: center;
             }
         }
         
@@ -1002,8 +1033,12 @@
                 font-size: 1.1rem;
             }
 
+            .products {
+                padding: 3rem 0.5rem;
+            }
+
             .products-container {
-                padding: 0 0.5rem;
+                padding: 0 0.25rem;
             }
 
             .featured-product {
@@ -1015,37 +1050,56 @@
             }
 
             .bundle-offer {
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             .student-count {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 6vw, 1.8rem);
             }
 
             .featured-product h3 {
-                font-size: 1.5rem;
+                font-size: clamp(1.2rem, 5vw, 1.4rem);
             }
 
             .product-subtitle {
-                font-size: 1rem;
+                font-size: clamp(0.9rem, 3vw, 1rem);
             }
 
             .bundle-offer h3 {
-                font-size: 1.8rem;
+                font-size: clamp(1.3rem, 5vw, 1.5rem);
             }
 
             .bundle-price {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 6vw, 1.8rem);
             }
 
             .product-pricing {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
                 gap: 0.5rem;
             }
 
             .price-new {
-                font-size: 1.5rem;
+                font-size: clamp(1.2rem, 5vw, 1.4rem);
+            }
+
+            .product-cta, .bundle-cta {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .guarantee-content {
+                padding: 1rem;
+            }
+
+            .guarantee-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .guarantee-icon i {
+                width: 20px;
+                height: 20px;
             }
         }
         
@@ -1350,7 +1404,7 @@
             }, 800);
         });
 
-        // Scroll animation
+        // Scroll animation - Fixed
         let scrollTimeout;
         const navbar = document.getElementById('navbar');
         
@@ -1375,17 +1429,19 @@
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
 
-        navLinks.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            }
-        });
+            navLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1393,7 +1449,7 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const headerOffset = 60;
+                    const headerOffset = 80;
                     const elementPosition = target.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -1405,28 +1461,58 @@
             });
         });
 
-        // Scroll reveal animations
+        // Animated counter for student count - Fixed
+        function animateCounter(element, target, duration = 2000) {
+            if (!element) return;
+            
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Scroll reveal animations with counter animation - Fixed
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    
+                    // Animate counters when they come into view
+                    const counters = entry.target.querySelectorAll('.student-count');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        if (target && counter.textContent === '0') {
+                            animateCounter(counter, target, 1500);
+                        }
+                    });
                 }
             });
         }, observerOptions);
 
+        // Observe all reveal elements
         document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
 
-        // Particles animation
+        // Particles animation - Simplified
         function createParticles() {
             const particlesContainer = document.querySelector('.particles-container');
-            const particleCount = window.innerWidth > 768 ? 40 : 20;
+            if (!particlesContainer) return;
+            
+            const particleCount = window.innerWidth > 768 ? 30 : 15;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -1442,31 +1528,30 @@
             }
         }
 
-        createParticles();
-
-        // Parallax effect
-        const heroParallax = () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
+        // Parallax effect - Simplified
+        function initParallax() {
+            let parallaxTimeout;
             
-            if (hero && scrolled < hero.offsetHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.2}px)`;
-            }
-        };
+            window.addEventListener('scroll', () => {
+                if (!parallaxTimeout) {
+                    parallaxTimeout = requestAnimationFrame(() => {
+                        const scrolled = window.pageYOffset;
+                        const hero = document.querySelector('.hero');
+                        
+                        if (hero && scrolled < hero.offsetHeight) {
+                            hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+                        }
+                        parallaxTimeout = null;
+                    });
+                }
+            }, { passive: true });
+        }
 
-        let parallaxTimeout;
-        window.addEventListener('scroll', () => {
-            if (!parallaxTimeout) {
-                parallaxTimeout = requestAnimationFrame(() => {
-                    heroParallax();
-                    parallaxTimeout = null;
-                });
-            }
-        }, { passive: true });
-
-        // Logo loading
+        // Logo loading - Fixed
         function loadLogo() {
             const logo = document.getElementById('logo');
+            if (!logo) return;
+            
             const img = new Image();
             
             img.onload = function() {
@@ -1477,13 +1562,78 @@
             img.onerror = function() {
                 logo.innerHTML = 'IC';
                 logo.classList.add('fallback');
-                logo.style.fontSize = '1.6rem';
+                if (window.innerWidth <= 480) {
+                    logo.style.fontSize = '1.2rem';
+                } else {
+                    logo.style.fontSize = '1.6rem';
+                }
             };
             
             img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/logo1.png';
         }
 
-        document.addEventListener('DOMContentLoaded', loadLogo);
+        // Random student count updates - Fixed
+        function updateStudentCount() {
+            const studentCountEl = document.querySelector('.student-count');
+            if (!studentCountEl) return;
+            
+            const currentCount = parseInt(studentCountEl.textContent) || 847;
+            if (Math.random() < 0.15) { // 15% chance every interval
+                const newCount = currentCount + Math.floor(Math.random() * 3) + 1; // Add 1-3
+                studentCountEl.textContent = newCount;
+                studentCountEl.setAttribute('data-target', newCount);
+                
+                // Add a small pulse animation
+                studentCountEl.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    studentCountEl.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }
+
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load logo
+            loadLogo();
+            
+            // Create particles
+            createParticles();
+            
+            // Initialize parallax only on desktop
+            if (window.innerWidth > 768) {
+                initParallax();
+            }
+            
+            // Start student count updates after 5 seconds
+            setTimeout(() => {
+                setInterval(updateStudentCount, 45000); // Every 45 seconds
+            }, 5000);
+        });
+
+        // Handle resize events
+        window.addEventListener('resize', function() {
+            // Disable animations on mobile for better performance
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.product-card, .featured-product').forEach(card => {
+                    card.style.transform = '';
+                });
+            }
+        }, { passive: true });
+
+        // Preload critical images
+        function preloadImages() {
+            const criticalImages = [
+                'https://raw.githubusercontent.com/st3pan007/1/main/logo1.png'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // Start preloading
+        preloadImages();
     </script>
 </body>
 </html>
