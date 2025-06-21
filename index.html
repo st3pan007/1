@@ -186,7 +186,7 @@
         .glass {
             background: var(--bg-glass);
             backdrop-filter: var(--backdrop-blur);
-            border: --border-glass;
+            border: var(--border-glass);
         }
         
         .glass-dark {
@@ -251,7 +251,7 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Optimized Navigation - Performance First */
+        /* Navigation - Updated from uprava-portfolia.html */
         .navbar {
             position: fixed;
             top: 0;
@@ -261,6 +261,7 @@
             padding: 1.5rem 0;
             transition: transform 0.3s ease, background-color 0.3s ease;
             will-change: transform;
+            background: transparent;
         }
         
         .navbar.scrolled {
@@ -270,33 +271,43 @@
             box-shadow: 0 2px 20px rgba(0, 72, 232, 0.08);
             padding: 1rem 0;
         }
-
+        
         .navbar.scrolled .logo {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
             border-color: rgba(0, 72, 232, 0.2);
+            color: var(--text-light);
         }
-
+        
+        .navbar.scrolled .logo img {
+            filter: brightness(1);
+        }
+        
+        .navbar.scrolled .logo.fallback {
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+        }
+        
         .navbar.scrolled .nav-links {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
             border-color: rgba(0, 72, 232, 0.2);
         }
-
+        
         .navbar.scrolled .nav-links a {
-            color: var(--primary-blue);
+            color: var(--text-dark);
         }
-
+        
         .navbar.scrolled .nav-links a:hover {
             color: var(--text-light);
             background: var(--gradient-primary);
         }
-
+        
         .navbar.scrolled .nav-links a.active {
             color: var(--text-light);
             background: var(--gradient-primary);
         }
-
+        
         .navbar.scrolled .hamburger span {
-            background: var(--primary-blue);
+            background: var(--text-dark);
         }
         
         .nav-container {
@@ -309,43 +320,48 @@
             position: relative;
         }
         
-        /* Optimized Logo */
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 290px;
+            max-width: 290px;
+            width: 100%;
             height: 60px;
             font-size: 2rem;
             font-weight: 900;
             color: var(--text-light);
             text-decoration: none;
             position: relative;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
             letter-spacing: -0.02em;
             padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
             backdrop-filter: blur(10px);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            will-change: transform;
+            will-change: transform, color;
+            overflow: hidden;
         }
-
+        
         .logo img {
-            width: 290px;
-            height: 60px;
+            max-width: 100%;
+            height: auto;
             object-fit: contain;
+            display: block;
+            transition: filter 0.3s ease;
         }
-
+        
         .logo.fallback {
             background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
+        
         .logo:hover {
             transform: scale(1.02);
         }
         
-        /* Optimized Navigation Links - Simplified */
         .nav-links {
             display: flex;
             list-style: none;
@@ -358,6 +374,7 @@
             padding: 0.5rem;
             position: relative;
             will-change: transform;
+            z-index: 1001;
         }
         
         .nav-links a {
@@ -384,15 +401,7 @@
             background: var(--gradient-primary);
             box-shadow: 0 4px 20px rgba(0, 72, 232, 0.4);
         }
-
-        /* Floating Action Elements */
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
         
-        /* Enhanced Mobile Menu */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -405,8 +414,9 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
+            z-index: 1002;
         }
-
+        
         .hamburger::before {
             content: '';
             position: absolute;
@@ -418,7 +428,7 @@
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-
+        
         .hamburger:hover::before {
             opacity: 1;
         }
@@ -439,17 +449,17 @@
             position: relative;
             z-index: 2;
         }
-
+        
         .navbar.scrolled .hamburger {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(0, 72, 232, 0.05));
+            background: rgba(255, 255, 255, 0.2);
             border-color: rgba(0, 72, 232, 0.2);
         }
-
+        
         .hamburger.active span {
-            background: var(--text-light);
+            background: var(--text-dark);
         }
         
-        /* Hero Section - From provided code */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             background: var(--gradient-primary);
@@ -510,7 +520,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--glass);
+            background: var(--bg-glass);
             backdrop-filter: var(--backdrop-blur);
             border: var(--border-glass);
             padding: 0.75rem 1.5rem;
@@ -794,9 +804,14 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Dg4 fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/></g></g></svg>"); // Fixed missing closing tag
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             animation: float 30s linear infinite;
             pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50%, 50%); }
         }
         
         .container {
@@ -969,15 +984,10 @@
             animation: iconShine 3s ease-in-out infinite;
         }
 
-        @keyframes navSlideIn {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        @keyframes iconShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
         }
         
         .achievement-item:hover .achievement-icon {
@@ -1286,6 +1296,12 @@
                 padding: 0.75rem 1rem;
                 font-size: 0.9rem;
             }
+
+            .logo {
+                max-width: 250px;
+                height: 50px;
+                padding: 0.5rem 0.75rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1295,29 +1311,31 @@
                 top: 100%;
                 left: 2rem;
                 right: 2rem;
-                background: rgba(0, 0, 0, 0.95);
+                background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: var(--backdrop-blur);
                 flex-direction: column;
                 gap: 0.5rem;
                 padding: 2rem;
                 border-radius: 20px;
                 box-shadow: var(--shadow-medium);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(0, 72, 232, 0.2);
+                z-index: 1001;
             }
 
-            .nav-links::before {
-                display: none;
+            .navbar.scrolled .nav-links {
+                background: rgba(255, 255, 255, 0.95);
+                border-color: rgba(0, 72, 232, 0.2);
             }
 
             .nav-links a {
-                color: var(--text-light);
+                color: var(--text-dark);
                 padding: 1rem;
                 text-align: center;
                 border-radius: 15px;
             }
 
             .nav-links a:hover {
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(0, 72, 232, 0.1);
                 transform: none;
             }
             
@@ -1371,6 +1389,11 @@
                 min-width: 120px;
                 padding: 1.5rem;
             }
+
+            .logo {
+                max-width: 200px;
+                height: 40px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1411,15 +1434,14 @@
             }
 
             .logo {
-                width: 200px;
-                height: 40px;
+                max-width: 150px;
+                height: 30px;
                 font-size: 1.6rem;
-                padding: 0.5rem 0.75rem;
+                padding: 0.25rem 0.5rem;
             }
 
-            .logo img {
-                width: 200px;
-                height: 40px;
+            .logo.fallback {
+                font-size: 1.2rem;
             }
 
             .cta-primary,
@@ -1449,12 +1471,10 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Revolutionary Navigation -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo fallback" id="logo">
-                IC
-            </a>
+            <a href="index.html" class="logo fallback" id="logo">IC</a>
             
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html" class="active">Domů</a></li>
@@ -1634,7 +1654,7 @@
                 <a href="https://tiktok.com/@investujchytree" class="social-link" target="_blank" rel="noopener">
                     <div class="social-icon tiktok">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 0 0 0 5 20.1a6.34 0 0 0 10.86-4.43v-7a8.16px 8.16px 0 0 0 4.77 1.52v-3.4px"></path>
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4"></path>
                         </svg>
                     </div>
                     <span class="social-name">TikTok</span>
@@ -1652,7 +1672,7 @@
             }, 800);
         });
 
-        // Optimized scroll handler with throttle
+        // Scroll animation
         let scrollTimeout;
         const navbar = document.getElementById('navbar');
         
@@ -1666,14 +1686,14 @@
 
         window.addEventListener('scroll', function() {
             if (!scrollTimeout) {
-                scrollTimeout = setTimeout(function() {
+                scrollTimeout = setTimeout(() => {
                     handleScroll();
                     scrollTimeout = null;
-                }, 16); // ~60fps
+                }, 16);
             }
         }, { passive: true });
 
-        // Mobile menu toggle with enhanced animation
+        // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
 
@@ -1682,7 +1702,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
         navLinks.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
                 hamburger.classList.remove('active');
@@ -1690,9 +1709,9 @@
             }
         });
 
-        // Smooth scrolling for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1708,7 +1727,7 @@
             });
         });
 
-        // Enhanced scroll reveal animation
+        // Scroll reveal animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1726,35 +1745,28 @@
             observer.observe(el);
         });
 
-        // Optimized particles animation
+        // Particles animation
         function createParticles() {
             const particlesContainer = document.querySelector('.particles-container');
-            const particleCount = window.innerWidth > 768 ? 40 : 20; // Fewer on mobile
+            const particleCount = window.innerWidth > 768 ? 40 : 20;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                
-                // Random horizontal position
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = '100%';
-                
-                // Random animation delay and duration
                 particle.style.animationDelay = `${Math.random() * 15}s`;
                 particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
-                
-                // Random size
                 const size = Math.random() * 3 + 1;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                
                 particlesContainer.appendChild(particle);
             }
         }
 
         createParticles();
 
-        // Optimized parallax - simplified
+        // Parallax effect
         const heroParallax = () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
@@ -1774,68 +1786,28 @@
             }
         }, { passive: true });
 
-        // Simplified mouse parallax - only on desktop and reduced intensity
-        if (window.innerWidth > 768 && window.devicePixelRatio <= 2) {
-            let mouseX = 0;
-            let mouseY = 0;
-            let animationId;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-                mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
-            });
-
-            function updateParallax() {
-                const cards = document.querySelectorAll('.profile-card, .achievement-item');
-                
-                cards.forEach((card, index) => {
-                    const intensity = 0.3;
-                    const xOffset = mouseX * intensity * 5;
-                    const yOffset = mouseY * intensity * 5;
-                    
-                    card.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
-                });
-
-                animationId = requestAnimationFrame(updateParallax);
-            }
-
-            updateParallax();
-        }
-
-        // Reset transform on mobile
-        window.addEventListener('resize', () => {
-            if (window.innerWidth <= 768) {
-                document.querySelectorAll('.profile-card, .achievement-item').forEach(card => {
-                    card.style.transform = '';
-                });
-            }
-        });
-
-        // Optimized logo loading with fallback
+        // Logo loading
         function loadLogo() {
             const logo = document.getElementById('logo');
             const img = new Image();
             
             img.onload = function() {
-                logo.innerHTML = `<img src="${this.src}" alt="Investuj Chytře Logo" style="width: 290px; height: 60px; object-fit: contain;" />`;
+                logo.innerHTML = `<img src="${this.src}" alt="Investuj Chytře Logo" loading="lazy" />`;
                 logo.classList.remove('fallback');
             };
             
-            // Set timeout for fallback
-            setTimeout(() => {
-                if (logo.classList.contains('fallback')) {
-                    // Logo didn't load, keep IC fallback
-                    logo.style.fontSize = '2rem';
-                }
-            }, 3000);
+            img.onerror = function() {
+                logo.innerHTML = 'IC';
+                logo.classList.add('fallback');
+                logo.style.fontSize = '1.6rem';
+            };
             
             img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/logo1.png';
         }
 
-        // Load logo when DOM is ready
         document.addEventListener('DOMContentLoaded', loadLogo);
 
-        // Add staggered animation to achievement items (simplified)
+        // Staggered animation for achievement items
         document.addEventListener('DOMContentLoaded', () => {
             const achievementItems = document.querySelectorAll('.achievement-item');
             achievementItems.forEach((item, index) => {
