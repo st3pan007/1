@@ -251,9 +251,8 @@
         }
         
         .navbar.scrolled .logo {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
-            border-color: rgba(0, 72, 232, 0.2);
-            color: var(--text-light);
+            background: transparent;
+            border: none;
         }
         
         .navbar.scrolled .logo img {
@@ -313,10 +312,10 @@
             transition: transform 0.3s ease, color 0.3s ease;
             letter-spacing: -0.02em;
             padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 0;
+            border: none;
             will-change: transform, color;
             overflow: hidden;
         }
@@ -1182,7 +1181,7 @@
                 logo.style.fontSize = '1.6rem';
             };
             
-            img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/logo1.png';
+            img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/images/logo2.png';
         }
 
         document.addEventListener('DOMContentLoaded', loadLogo);
