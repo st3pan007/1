@@ -1420,6 +1420,10 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
     <!-- Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
     
@@ -1745,6 +1749,14 @@
             loadLogo();
         });
 
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 800);
+        });
+        
         // Progress Bar
         function initProgressBar() {
             const progressBar = document.getElementById('progress-bar');
