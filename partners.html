@@ -1263,6 +1263,21 @@
                 padding: 1.25rem 2rem;
                 font-size: 1rem;
             }
+
+            .partner-logo {
+                width: 90px; /* Snížení z výchozí 140px na 90px pro menší obrazovky */
+                height: 45px; /* Snížení z výchozí 70px na 45px */
+                padding: 0.75rem; /* Snížení paddingu pro vyvážení */
+            }
+
+            .partner-logo img {
+                max-width: 80px; /* Zvýšení z výchozí 100% (omezováno kontejnerem) */
+                max-height: 35px; /* Zvýšení podle potřeby */
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+            
         }
         
         /* Performance Optimizations */
