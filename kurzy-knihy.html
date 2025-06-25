@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurzy & Knihy | Investuj Chytře - Premium Edition</title>
-    <meta name="description" content="Prémiové investiční kurzy a knihy od Investuj Chytře. Transformujte své finance s ověřenými strategiemi (+180% výnos za 5 let).">
+    <title>Kurzy a Knihy | Investuj Chytře</title>
+    <meta name="description" content="Profesionální investiční vzdělání. E-booky a kurzy, které vás naučí analyzovat akcie a budovat mentální odolnost investora.">
+    <meta name="keywords" content="investiční kurzy, investiční knihy, analýza akcií, mentální odolnost, finanční vzdělávání">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kurzy a Knihy - Investuj Chytře">
+    <meta property="og:description" content="Začněte investovat s jistotou. Profesionální kurzy a e-booky pro začátečníky i pokročilé investory.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://example.com/og-education.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+            {
+                "@type": "Course",
+                "name": "Jak analyzovat akcie jako profesionál",
+                "description": "10dílný kurz analýzy akcií s certifikátem"
+            },
+            {
+                "@type": "Book",
+                "name": "Mentální odolnost investora",
+                "bookFormat": "EBook"
+            },
+            {
+                "@type": "Book", 
+                "name": "První krok k bohatství",
+                "bookFormat": "EBook"
+            }
+        ]
+    }
+    </script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,11 +45,6 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    
-    <!-- GSAP for Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     
     <style>
         /* CSS Reset & Variables */
@@ -32,19 +59,16 @@
             --secondary-blue: #2ea5ed;
             --accent-blue: #007dff;
             --highlight-cyan: #00d4ff;
-            --premium-gold: #ffd700;
             --text-dark: #1a1a1a;
             --text-light: #ffffff;
             --text-gray: #666666;
             --bg-light: #fafbfc;
-            --bg-premium: #0a0e1a;
             --bg-glass: rgba(255, 255, 255, 0.1);
-            --bg-glass-dark: rgba(0, 0, 0, 0.3);
+            --bg-glass-dark: rgba(0, 0, 0, 0.1);
             --shadow-soft: 0 8px 32px rgba(0, 72, 232, 0.12);
             --shadow-medium: 0 16px 64px rgba(0, 72, 232, 0.16);
             --shadow-strong: 0 24px 96px rgba(0, 72, 232, 0.24);
             --gradient-primary: linear-gradient(135deg, #0048e8 0%, #2ea5ed 50%, #007dff 100%);
-            --gradient-premium: linear-gradient(135deg, #0048e8 0%, #007dff 25%, #00d4ff 50%, #ffd700 100%);
             --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
             --border-glass: 1px solid rgba(255, 255, 255, 0.18);
             --backdrop-blur: blur(20px);
@@ -59,21 +83,10 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background: var(--bg-light);
             overflow-x: hidden;
+            background: var(--bg-light);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-        }
-        
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--gradient-premium);
-            z-index: 10000;
-            transition: width 0.3s ease;
         }
         
         /* Fluid Typography */
@@ -83,20 +96,22 @@
             line-height: 1.1; 
             letter-spacing: -0.02em;
         }
-        
         h2 { 
             font-size: clamp(2rem, 4vw, 3rem); 
             font-weight: 700; 
             line-height: 1.2; 
             letter-spacing: -0.01em;
         }
-        
         h3 { 
             font-size: clamp(1.5rem, 3vw, 2rem); 
             font-weight: 600; 
-            line-height: 1.3;
+            line-height: 1.3; 
         }
-        
+        h4 { 
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem); 
+            font-weight: 600; 
+            line-height: 1.4; 
+        }
         p { 
             font-size: clamp(1rem, 2vw, 1.125rem); 
             line-height: 1.7; 
@@ -108,6 +123,17 @@
             from {
                 opacity: 0;
                 transform: translate3d(0, 60px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translate3d(-60px, 0, 0);
             }
             to {
                 opacity: 1;
@@ -159,6 +185,17 @@
                 box-shadow: 0 0 40px rgba(0, 72, 232, 0.6), 0 0 80px rgba(0, 212, 255, 0.3);
             }
         }
+
+        @keyframes navSlideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
         
         /* Glassmorphism Effects */
         .glass {
@@ -166,7 +203,13 @@
             backdrop-filter: var(--backdrop-blur);
             border: var(--border-glass);
         }
-
+        
+        .glass-dark {
+            background: var(--bg-glass-dark);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
         /* Preloader */
         .preloader {
             position: fixed;
@@ -223,7 +266,7 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Navigation */
+        /* Navigation - Updated from uprava-portfolia.html */
         .navbar {
             position: fixed;
             top: 0;
@@ -439,7 +482,6 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
         
         .hero::before {
@@ -526,7 +568,7 @@
             opacity: 0.9;
             line-height: 1.6;
             color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for contrast */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.9s forwards;
         }
@@ -573,7 +615,7 @@
             background: linear-gradient(90deg, transparent, rgba(0, 72, 232, 0.1), transparent);
             transition: left 0.8s ease;
         }
-        
+
         .cta-primary::after {
             content: '';
             position: absolute;
@@ -590,7 +632,7 @@
         .cta-primary:hover::before {
             left: 100%;
         }
-        
+
         .cta-primary:hover::after {
             width: 300%;
             height: 300%;
@@ -601,7 +643,7 @@
             box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
             background: linear-gradient(135deg, #ffffff 0%, #e8f4ff 100%);
         }
-        
+
         .cta-primary .icon {
             background: var(--gradient-primary);
             border-radius: 50%;
@@ -612,703 +654,432 @@
             justify-content: center;
             transition: all 0.4s ease;
         }
-        
+
         .cta-primary:hover .icon {
             transform: rotate(360deg) scale(1.1);
             background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
         }
-
-        /* Sales Section - Premium Products */
-        .sales-section {
-            padding: 8rem 2rem;
-            background: linear-gradient(180deg, var(--bg-light) 0%, #ffffff 100%);
+        
+        /* Products Section */
+        .products {
+            padding: 10rem 2rem;
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 50%, #2d3748 100%);
             position: relative;
+            z-index: 5;
             overflow: hidden;
         }
 
-        .sales-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -25%;
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(0, 72, 232, 0.03) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .sales-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Section Header */
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-            position: relative;
-        }
-
-        .section-subtitle {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.2s forwards;
-        }
-
-        .section-description {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.4s forwards;
-        }
-
-        /* Urgency Banner */
-        .urgency-banner {
-            background: linear-gradient(135deg, #ff4458 0%, #ff6b6b 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 20px;
-            margin-bottom: 4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            box-shadow: 0 10px 40px rgba(255, 68, 88, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .urgency-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: morphingGlow 10s ease-in-out infinite;
-        }
-
-        .urgency-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 2;
-        }
-
-        .urgency-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulseGlow 2s ease-in-out infinite;
-        }
-
-        .urgency-text {
-            font-size: 1.125rem;
-            font-weight: 600;
-        }
-
-        #countdown-timer {
-            font-size: 1.5rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            min-width: 150px;
-            text-align: center;
-        }
-
-        /* Product Cards Grid */
-        .products-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-bottom: 5rem;
-        }
-
-        .product-card-premium {
-            background: white;
-            border-radius: 30px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.08);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card-premium::before {
+        .products::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: var(--gradient-premium);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 72, 232, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundFlow 20s ease-in-out infinite;
         }
 
-        .product-card-premium:hover::before {
-            transform: scaleX(1);
+        @keyframes backgroundFlow {
+            0%, 100% { 
+                background: 
+                    radial-gradient(circle at 20% 20%, rgba(0, 72, 232, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            }
+            33% { 
+                background: 
+                    radial-gradient(circle at 70% 30%, rgba(0, 72, 232, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 30% 70%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 40%, rgba(0, 125, 255, 0.12) 0%, transparent 50%);
+            }
+            66% { 
+                background: 
+                    radial-gradient(circle at 40% 80%, rgba(0, 72, 232, 0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 20%, rgba(46, 165, 237, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            }
         }
 
-        .product-card-premium:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(0, 72, 232, 0.15);
-        }
-
-        .product-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--gradient-premium);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .product-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .product-subtitle {
-            font-size: 1.125rem;
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .product-description {
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        /* Value Points */
-        .value-points {
-            margin-bottom: 2rem;
-        }
-
-        .value-point {
-            display: flex;
-            align-items: start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: rgba(0, 72, 232, 0.03);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .value-point:hover {
-            background: rgba(0, 72, 232, 0.08);
-            transform: translateX(5px);
-        }
-
-        .value-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .value-icon i {
-            width: 14px;
-            height: 14px;
-            color: white;
-        }
-
-        .value-text {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-        }
-
-        .price-wrapper {
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .price-original {
-            font-size: 1.5rem;
-            color: #999;
-            text-decoration: line-through;
-            font-weight: 500;
-        }
-
-        .price-current {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient-premium);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .price-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff4458, #ff6b6b);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1.25rem 2.5rem;
-            border-radius: 60px;
-            font-size: 1.125rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 72, 232, 0.3);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.6s ease;
-        }
-
-        .cta-button:hover::before {
-            width: 300%;
-            height: 300%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 50px rgba(0, 72, 232, 0.4);
-        }
-
-        .cta-button-icon {
-            background: rgba(255, 255, 255, 0.2);
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-        }
-
-        .cta-button:hover .cta-button-icon {
-            transform: translateX(5px);
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--text-gray);
-        }
-
-        .trust-badge i {
-            color: #4CAF50;
-        }
-
-        /* Master Bundle */
-        .master-bundle {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border-radius: 40px;
-            padding: 4rem;
-            margin: 5rem 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
-        }
-
-        .master-bundle::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
-            animation: morphingGlow 15s ease-in-out infinite;
-        }
-
-        .bundle-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .bundle-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--premium-gold), #ffed4e);
-            color: #1a1a2e;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-        }
-
-        .bundle-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: white;
-            margin-bottom: 1rem;
-            font-weight: 900;
-        }
-
-        .bundle-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 3rem;
-        }
-
-        .bundle-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .bundle-item {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .bundle-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .bundle-item-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-premium);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .bundle-item-title {
-            color: white;
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .bundle-item-value {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.875rem;
-        }
-
-        .bundle-pricing {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .bundle-price-comparison {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .bundle-original-price {
-            font-size: 2rem;
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: line-through;
-        }
-
-        .bundle-arrow {
-            color: var(--premium-gold);
-            font-size: 2rem;
-        }
-
-        .bundle-final-price {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--premium-gold), #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .bundle-savings {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--premium-gold);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.125rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 2rem;
-        }
-
-        .bundle-cta {
-            background: linear-gradient(135deg, var(--premium-gold), #ffed4e);
-            color: #1a1a2e;
-            padding: 1.5rem 3rem;
-            border-radius: 60px;
-            font-size: 1.25rem;
-            font-weight: 800;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .bundle-cta:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 5rem 0;
-            background: white;
-            border-radius: 40px;
-            margin: 5rem 0;
-            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.08);
-        }
-
-        .testimonials-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .testimonial-card {
-            background: linear-gradient(135deg, rgba(0, 72, 232, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 72, 232, 0.1);
-        }
-
-        .testimonial-stars {
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .author-role {
-            font-size: 0.875rem;
-            color: var(--text-gray);
-        }
-
-        /* Guarantee Section */
-        .guarantee {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            padding: 3rem;
-            border-radius: 30px;
-            text-align: center;
-            margin: 5rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .guarantee::before {
+        .products::after {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
-            animation: morphingGlow 10s ease-in-out infinite;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 30s linear infinite;
+            pointer-events: none;
         }
 
-        .guarantee-content {
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50%, 50%); }
+        }
+        
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
             position: relative;
             z-index: 2;
         }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--highlight-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            position: relative;
+            line-height: 1.1;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 4rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Product Cards */
+        .product-grid {
+            margin-top: 4rem;
+        }
+        
+        .course-container {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+        }
+        
+        .ebooks-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding-top: 4rem;
+        }
+        
+        .ebooks-container::before {
+            content: 'E-booky';
+            position: absolute;
+            top: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+        }
 
-        .guarantee-icon {
+        .product-card.featured {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(46, 165, 237, 0.05));
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 20px rgba(0, 72, 232, 0.3);
+        }
+
+        .product-icon {
             width: 80px;
             height: 80px;
-            background: #4CAF50;
-            border-radius: 50%;
+            background: var(--gradient-primary);
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 2rem;
-            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 72, 232, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .guarantee-icon i {
+        .product-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: iconShine 3s ease-in-out infinite;
+        }
+
+        @keyframes iconShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        .product-card:hover .product-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
+        }
+
+        .product-icon svg {
             width: 40px;
             height: 40px;
-            color: white;
+            stroke: var(--text-light);
+            fill: none;
+            stroke-width: 2;
+            z-index: 2;
+            position: relative;
         }
 
-        .guarantee-title {
-            font-size: 2rem;
+        .product-title {
+            font-size: 1.75rem;
             font-weight: 700;
-            color: #2e7d32;
+            color: var(--text-light);
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        .guarantee-text {
+        .product-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .product-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--highlight-cyan);
+            border-radius: 50%;
+            flex-shrink: 0;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .price-current {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--highlight-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .price-currency {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .product-cta {
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            padding: 1.5rem 3rem;
             font-size: 1.125rem;
-            color: #388e3c;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 72, 232, 0.3);
+            width: 100%;
         }
 
+        .product-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .product-cta:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .product-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 72, 232, 0.4);
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
+        }
+
+        .product-cta svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .product-cta:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* Special styling for course card */
+        .product-card.course {
+            background: linear-gradient(135deg, rgba(46, 165, 237, 0.1), rgba(0, 125, 255, 0.05));
+            border-color: rgba(46, 165, 237, 0.3);
+        }
+
+        .product-card.course .product-badge {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--highlight-cyan));
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .course-container,
+            .ebooks-container {
+                max-width: 100%;
+            }
+        }
+
         @media (max-width: 1024px) {
-            .products-showcase {
-                grid-template-columns: 1fr;
-                max-width: 600px;
-                margin: 0 auto 5rem;
+            .products {
+                padding: 8rem 2rem;
             }
-            
-            .master-bundle {
-                padding: 3rem 2rem;
+
+            .ebooks-container {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
             }
-            
-            .bundle-content {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            .nav-links {
+                gap: 0.25rem;
+                padding: 0.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                max-width: 250px;
+                height: 50px;
+                padding: 0.5rem 0.75rem;
             }
         }
         
@@ -1329,19 +1100,19 @@
                 border: 1px solid rgba(0, 72, 232, 0.2);
                 z-index: 1001;
             }
-            
+
             .navbar.scrolled .nav-links {
                 background: rgba(255, 255, 255, 0.95);
                 border-color: rgba(0, 72, 232, 0.2);
             }
-            
+
             .nav-links a {
                 color: var(--text-dark);
                 padding: 1rem;
                 text-align: center;
                 border-radius: 15px;
             }
-            
+
             .nav-links a:hover {
                 background: rgba(0, 72, 232, 0.1);
                 transform: none;
@@ -1377,56 +1148,29 @@
                 max-width: 300px;
                 justify-content: center;
             }
-            
-            .sales-section {
-                padding: 5rem 1rem;
+
+            .ebooks-container {
+                grid-template-columns: 1fr;
             }
-            
-            .urgency-banner {
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem 1rem;
-            }
-            
-            .urgency-content {
-                flex-direction: column;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .product-card-premium {
+
+            .product-card {
                 padding: 2rem;
             }
-            
-            .master-bundle {
-                margin: 3rem 0;
-                border-radius: 25px;
+
+            .product-badge {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
             }
-            
-            .bundle-price-comparison {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .bundle-final-price {
-                font-size: 2.5rem;
-            }
-            
-            .testimonials {
-                margin: 3rem 0;
-                padding: 3rem 0;
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
+
+            .logo {
+                max-width: 200px;
+                height: 40px;
             }
         }
         
         @media (max-width: 480px) {
-            .nav-container {
+            .container {
                 padding: 0 1rem;
             }
             
@@ -1434,56 +1178,59 @@
                 padding: 0 1rem;
             }
             
+            .products {
+                padding: 6rem 1rem;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .price-current {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
             .logo {
                 max-width: 150px;
                 height: 30px;
                 font-size: 1.6rem;
                 padding: 0.25rem 0.5rem;
             }
-            
+
             .logo.fallback {
                 font-size: 1.2rem;
             }
-            
+
             .cta-primary {
                 padding: 1.5rem 2.5rem;
                 font-size: 1.1rem;
             }
-            
-            .products-showcase {
-                gap: 2rem;
-            }
-            
-            .product-card-premium {
-                padding: 1.5rem;
-                border-radius: 20px;
-            }
-            
-            .bundle-title {
-                font-size: 1.75rem;
-            }
-            
-            .bundle-cta {
-                padding: 1.25rem 2rem;
-                font-size: 1.1rem;
-            }
-            
-            .guarantee {
-                padding: 2rem 1rem;
-            }
+        }
+        
+        /* Performance Optimizations */
+        .gpu-accelerated {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
-
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="loader"></div>
     </div>
-    
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progress-bar"></div>
-    
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -1512,299 +1259,127 @@
         <div class="particles-container"></div>
         <div class="hero-content">
             <div class="hero-badge">
-                <i data-lucide="trending-up"></i>
-                <span>+38% za květen 2025</span>
+                <i data-lucide="graduation-cap"></i>
+                <span>Investuj do svého vzdělání</span>
             </div>
-            <h1>Konečně investiční vzdělávání, které funguje</h1>
-            <p class="hero-subtitle">Žádné prázdné teorie. Žádné složité grafy. Jen ověřené strategie, které mi vydělaly přes 1,5 milionu korun. Teď je předávám vám.</p>
+            <h1>Začni investovat s jistotou</h1>
+            <p class="hero-subtitle">Profesionální kurzy a e-booky, které tě naučí analyzovat akcie jako zkušený investor. Žádné složité teorie – jen praktické znalosti, které okamžitě využiješ.</p>
             <div class="hero-cta">
                 <a href="#products" class="cta-primary">
-                    <span>Objevte produkty</span>
+                    <span>Prohlédnout nabídku</span>
                     <div class="icon">
-                        <i data-lucide="arrow-down"></i>
+                        <i data-lucide="book-open"></i>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Sales Section -->
-    <section class="sales-section" id="products">
-        <div class="sales-container">
-            <!-- Section Header -->
-            <div class="section-header">
-                <p class="section-subtitle">EXKLUZIVNÍ NABÍDKA</p>
-                <h2 class="section-title">Získejte přístup k mým nejcennějším strategiím</h2>
-                <p class="section-description">Po 7 letech testování, chyb a úspěchů jsem vytvořil systém, který skutečně funguje. Více než 847 spokojených studentů již mění své finanční životy.</p>
-            </div>
-
-            <!-- Urgency Banner -->
-            <div class="urgency-banner">
-                <div class="urgency-content">
-                    <div class="urgency-icon">
-                        <i data-lucide="clock"></i>
-                    </div>
-                    <p class="urgency-text">Limitovaná nabídka se slevou 60% končí za:</p>
-                </div>
-                <div id="countdown-timer">23:59:59</div>
-            </div>
-
-            <!-- Products Showcase -->
-            <div class="products-showcase">
-                <!-- Product 1: Online Course -->
-                <div class="product-card-premium">
-                    <div class="product-label">
-                        <i data-lucide="star"></i>
-                        <span>BESTSELLER</span>
-                    </div>
-                    <h3 class="product-title">Portfolio od nuly za 30 dní</h3>
-                    <p class="product-subtitle">Online kurz s reálnými obchody</p>
-                    <p class="product-description">Sledujte mě krok za krokem, jak stavím portfolio od úplného začátku. Žádná teorie – jen praktické obchodování v reálném čase.</p>
-                    
-                    <div class="value-points">
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">30 video lekcí (15-20 min denně) s reálnými nákupy</p>
+    <!-- Products Section -->
+    <section class="products reveal" id="products">
+        <div class="products-container">
+            <h2 class="section-title">Naše vzdělávací produkty</h2>
+            <p class="section-subtitle">
+                Vyberte si z našich pečlivě připravených kurzů a e-booků. Každý produkt je navržen tak, 
+                aby vám dal praktické znalosti, které můžete okamžitě použít ve svém investování.
+            </p>
+            
+            <div class="product-grid">
+                <!-- Course Card - Full Width -->
+                <div class="course-container">
+                    <div class="product-card course featured reveal">
+                        <span class="product-badge">NEJPOPULÁRNĚJŠÍ</span>
+                        <div class="product-icon">
+                            <i data-lucide="video"></i>
                         </div>
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">Kompletní analýza 15 akcií včetně mých osobních pozic</p>
+                        <h3 class="product-title">Jak analyzovat akcie jako profesionál</h3>
+                        <p class="product-description">
+                            10dílný video kurz, který tě naučí nejdůležitější metody analýzy jednoduše a srozumitelně. 
+                            Od vnitřní hodnoty, vnější analýzy až po analýzu celého trhu. Každý díl ti dá praktický nástroj, 
+                            jak investovat chytře a sebevědomě.
+                        </p>
+                        <ul class="product-features">
+                            <li>10 podrobných video lekcí</li>
+                            <li>Praktické příklady z reálného trhu</li>
+                            <li>Zkouška znalostí na konci kurzu</li>
+                            <li>Oficiální certifikát o absolvování</li>
+                            <li>Přístup k materiálům navždy</li>
+                            <li>Podpora v komentářích</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price-current">997</span>
+                            <span class="price-currency">Kč</span>
                         </div>
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">Excel tracker pro sledování vašeho portfolia</p>
-                        </div>
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">12 měsíců přístupu + doživotní aktualizace</p>
-                        </div>
-                    </div>
-
-                    <div class="pricing-section">
-                        <div class="price-badge">UŠETŘÍTE 3 000 Kč</div>
-                        <div class="price-wrapper">
-                            <span class="price-original">4 997 Kč</span>
-                            <span class="price-current">1 997 Kč</span>
-                        </div>
-                    </div>
-
-                    <div class="cta-section">
-                        <a href="#" class="cta-button">
-                            <span>Získat okamžitý přístup</span>
-                            <div class="cta-button-icon">
-                                <i data-lucide="arrow-right"></i>
-                            </div>
+                        <a href="https://buy.stripe.com/28EdRa1E9fxI40x7GS7IY06" class="product-cta" target="_blank" rel="noopener">
+                            <span>Začít kurz nyní</span>
+                            <i data-lucide="arrow-right"></i>
                         </a>
-                        <div class="trust-badges">
-                            <div class="trust-badge">
-                                <i data-lucide="shield-check"></i>
-                                <span>SSL zabezpečení</span>
-                            </div>
-                            <div class="trust-badge">
-                                <i data-lucide="rotate-ccw"></i>
-                                <span>14denní záruka</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Product 2: E-book Psychology -->
-                <div class="product-card-premium">
-                    <div class="product-label">
-                        <i data-lucide="brain"></i>
-                        <span>NOVÁ KNIHA</span>
-                    </div>
-                    <h3 class="product-title">Psychologie ziskového investora</h3>
-                    <p class="product-subtitle">Ovládněte své emoce, ovládněte trh</p>
-                    <p class="product-description">Přečtěte si můj osobní deník z krachu 2022, kdy jsem ztratil 340 000 Kč. Naučte se z mých chyb a vybudujte si mentální sílu úspěšného investora.</p>
-                    
-                    <div class="value-points">
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">7 psychologických triků pro kontrolu emocí</p>
-                        </div>
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">Reálné záznamy z krachu 2022 (audio bonusy)</p>
-                        </div>
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">Strategie proti FOMO a panice</p>
-                        </div>
-                        <div class="value-point">
-                            <div class="value-icon">
-                                <i data-lucide="check"></i>
-                            </div>
-                            <p class="value-text">195 stran praktických rad</p>
-                        </div>
-                    </div>
-
-                    <div class="pricing-section">
-                        <div class="price-badge">UŠETŘÍTE 600 Kč</div>
-                        <div class="price-wrapper">
-                            <span class="price-original">1 297 Kč</span>
-                            <span class="price-current">697 Kč</span>
-                        </div>
-                    </div>
-
-                    <div class="cta-section">
-                        <a href="#" class="cta-button">
-                            <span>Stáhnout e-knihu</span>
-                            <div class="cta-button-icon">
-                                <i data-lucide="download"></i>
-                            </div>
-                        </a>
-                        <div class="trust-badges">
-                            <div class="trust-badge">
-                                <i data-lucide="file-text"></i>
-                                <span>PDF + Audio</span>
-                            </div>
-                            <div class="trust-badge">
-                                <i data-lucide="clock"></i>
-                                <span>Okamžité doručení</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Master Bundle -->
-            <div class="master-bundle">
-                <div class="bundle-header">
-                    <div class="bundle-label">
-                        <i data-lucide="crown"></i>
-                        <span>NEJLEPŠÍ HODNOTA</span>
-                    </div>
-                    <h3 class="bundle-title">Kompletní balíček Investor PRO</h3>
-                    <p class="bundle-subtitle">Vše, co potřebujete pro úspěšné investování na jednom místě</p>
-                </div>
-
-                <div class="bundle-content">
-                    <div class="bundle-item">
-                        <div class="bundle-item-icon">
-                            <i data-lucide="play-circle"></i>
-                        </div>
-                        <h4 class="bundle-item-title">Online kurz</h4>
-                        <p class="bundle-item-value">Hodnota: 1 997 Kč</p>
-                    </div>
-                    <div class="bundle-item">
-                        <div class="bundle-item-icon">
+                <!-- E-books Container -->
+                <div class="ebooks-container">
+                    <!-- E-book 1 -->
+                    <div class="product-card reveal">
+                        <div class="product-icon">
                             <i data-lucide="brain"></i>
                         </div>
-                        <h4 class="bundle-item-title">Psychologie investora</h4>
-                        <p class="bundle-item-value">Hodnota: 697 Kč</p>
-                    </div>
-                    <div class="bundle-item">
-                        <div class="bundle-item-icon">
-                            <i data-lucide="alert-triangle"></i>
+                        <h3 class="product-title">Mentální odolnost investora</h3>
+                        <p class="product-description">
+                            Nezbytný průvodce pro všechny, kdo chtějí uspět na turbulentních trzích. 
+                            Naučíš se zvládat emoce, stres a nejistotu. Od mindfulness až po vedení 
+                            investičního deníku – praktické strategie pro budování dlouhodobého bohatství.
+                        </p>
+                        <ul class="product-features">
+                            <li>Psychologie úspěšného investování</li>
+                            <li>Konkrétní strategie zvládání emocí</li>
+                            <li>Praktické nástroje a techniky</li>
+                            <li>Reálné příklady z praxe</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price-current">197</span>
+                            <span class="price-currency">Kč</span>
                         </div>
-                        <h4 class="bundle-item-title">67 chyb začátečníků</h4>
-                        <p class="bundle-item-value">Hodnota: 497 Kč</p>
+                        <a href="https://buy.stripe.com/cNi4gAciNclw54BbX87IY08" class="product-cta" target="_blank" rel="noopener">
+                            <span>Koupit e-book</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="bundle-item">
-                        <div class="bundle-item-icon">
-                            <i data-lucide="coins"></i>
-                        </div>
-                        <h4 class="bundle-item-title">Dividendová strategie</h4>
-                        <p class="bundle-item-value">Hodnota: 797 Kč</p>
-                    </div>
-                </div>
 
-                <div class="bundle-pricing">
-                    <div class="bundle-price-comparison">
-                        <span class="bundle-original-price">3 988 Kč</span>
-                        <span class="bundle-arrow">→</span>
-                        <span class="bundle-final-price">2 497 Kč</span>
-                    </div>
-                    <div class="bundle-savings">Ušetříte neuvěřitelných 1 491 Kč!</div>
-                    <a href="#" class="bundle-cta">
-                        <span>Získat kompletní balíček</span>
-                        <i data-lucide="shopping-bag"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Testimonials -->
-            <div class="testimonials">
-                <div class="testimonials-header">
-                    <h3>Co říkají naši studenti</h3>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"Za 3 měsíce jsem vydělal zpět 5x cenu kurzu. Konečně někdo, kdo učí z praxe, ne z učebnic."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">MK</div>
-                            <div class="author-info">
-                                <p class="author-name">Martin K.</p>
-                                <p class="author-role">Začínající investor</p>
-                            </div>
+                    <!-- E-book 2 -->
+                    <div class="product-card reveal">
+                        <div class="product-icon">
+                            <i data-lucide="trending-up"></i>
                         </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"Psychologie investora mi otevřela oči. Díky ní jsem přestala panikařit při poklesech."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">PS</div>
-                            <div class="author-info">
-                                <p class="author-name">Petra S.</p>
-                                <p class="author-role">Aktivní investorka</p>
-                            </div>
+                        <h3 class="product-title">První krok k bohatství</h3>
+                        <p class="product-description">
+                            Průvodce světem investování pro úplné začátečníky. Zjistíš, proč je investování 
+                            lepší než spoření, jak chránit úspory před inflací a jak analyzovat první akcie. 
+                            Krok za krokem k finanční nezávislosti.
+                        </p>
+                        <ul class="product-features">
+                            <li>Základy investování od A do Z</li>
+                            <li>Přehled všech investičních nástrojů</li>
+                            <li>Návod na první investici</li>
+                            <li>Vyvarování se častých chyb</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price-current">297</span>
+                            <span class="price-currency">Kč</span>
                         </div>
+                        <a href="https://buy.stripe.com/bJe6oI6Yt5X89kR2my7IY09" class="product-cta" target="_blank" rel="noopener">
+                            <span>Koupit e-book</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"Dividendová strategie = game changer. Mám pasivní příjem 12 000 Kč měsíčně."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">TN</div>
-                            <div class="author-info">
-                                <p class="author-name">Tomáš N.</p>
-                                <p class="author-role">Dividendový investor</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Guarantee -->
-            <div class="guarantee">
-                <div class="guarantee-content">
-                    <div class="guarantee-icon">
-                        <i data-lucide="shield-check"></i>
-                    </div>
-                    <h3 class="guarantee-title">100% záruka spokojenosti</h3>
-                    <p class="guarantee-text">Pokud během 14 dnů zjistíte, že produkty nesplňují vaše očekávání, vrátíme vám peníze. Bez otázek, bez problémů. Věřím si natolik, že vám tuto záruku můžu nabídnout.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        // Initialize all features
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            initProgressBar();
-            initParticles();
-            initNavbar();
-            initSmoothScroll();
-            initGSAPAnimations();
-            initCountdown();
-            loadLogo();
-        });
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
         // Preloader
         window.addEventListener('load', () => {
@@ -1813,19 +1388,82 @@
                 preloader.classList.add('hidden');
             }, 800);
         });
+
+        // Scroll animation
+        let scrollTimeout;
+        const navbar = document.getElementById('navbar');
         
-        // Progress Bar
-        function initProgressBar() {
-            const progressBar = document.getElementById('progress-bar');
-            window.addEventListener('scroll', () => {
-                const scrolled = window.scrollY;
-                const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
-                progressBar.style.width = (scrolled / maxHeight) * 100 + '%';
-            }, { passive: true });
+        function handleScroll() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         }
 
-        // Particles Animation
-        function initParticles() {
+        window.addEventListener('scroll', function() {
+            if (!scrollTimeout) {
+                scrollTimeout = setTimeout(() => {
+                    handleScroll();
+                    scrollTimeout = null;
+                }, 16);
+            }
+        }, { passive: true });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 60;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Particles animation
+        function createParticles() {
             const particlesContainer = document.querySelector('.particles-container');
             const particleCount = window.innerWidth > 768 ? 40 : 20;
 
@@ -1843,140 +1481,71 @@
             }
         }
 
-        // GSAP Animations
-        function initGSAPAnimations() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-            
-            gsap.registerPlugin(ScrollTrigger);
-            
-            // Animate product cards
-            gsap.utils.toArray('.product-card-premium').forEach((card, i) => {
-                gsap.from(card, {
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    delay: i * 0.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%',
-                        once: true
-                    }
-                });
-            });
+        createParticles();
 
-            // Animate bundle
-            gsap.from('.master-bundle', {
-                opacity: 0,
-                scale: 0.95,
-                duration: 1.2,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.master-bundle',
-                    start: 'top 80%',
-                    once: true
-                }
-            });
-
-            // Animate testimonials
-            gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
-                gsap.from(card, {
-                    opacity: 0,
-                    x: i % 2 === 0 ? -50 : 50,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 85%',
-                        once: true
-                    }
-                });
-            });
-        }
-
-        // Countdown Timer
-        function initCountdown() {
-            const countdownEl = document.getElementById('countdown-timer');
-            if (!countdownEl) return;
+        // Parallax
+        const heroParallax = () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
             
-            // Set countdown to 24 hours from now
-            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
-            
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const distance = endTime - now;
-                
-                if (distance < 0) {
-                    countdownEl.textContent = '00:00:00';
-                    return;
-                }
-                
-                const hours = Math.floor(distance / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-                countdownEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.2}px)`;
             }
-            
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        }
+        };
 
-        // Navigation
-        function initNavbar() {
-            const navbar = document.getElementById('navbar');
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('nav-links');
-            
-            let scrollTimeout;
-            window.addEventListener('scroll', function() {
-                if (!scrollTimeout) {
-                    scrollTimeout = setTimeout(() => {
-                        if (window.scrollY > 50) {
-                            navbar.classList.add('scrolled');
-                        } else {
-                            navbar.classList.remove('scrolled');
-                        }
-                        scrollTimeout = null;
-                    }, 16);
-                }
-            }, { passive: true });
-            
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navLinks.classList.toggle('active');
-            });
-            
-            navLinks.addEventListener('click', (e) => {
-                if (e.target.tagName === 'A') {
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                }
-            });
-        }
-
-        // Smooth Scrolling
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerOffset = 60;
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
+        let parallaxTimeout;
+        window.addEventListener('scroll', () => {
+            if (!parallaxTimeout) {
+                parallaxTimeout = requestAnimationFrame(() => {
+                    heroParallax();
+                    parallaxTimeout = null;
                 });
+            }
+        }, { passive: true });
+
+        // Mouse parallax for product cards
+        if (window.innerWidth > 768 && window.devicePixelRatio <= 2) {
+            let mouseX = 0;
+            let mouseY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
             });
+
+            function updateParallax() {
+                const courseCard = document.querySelector('.course-container .product-card');
+                const ebookCards = document.querySelectorAll('.ebooks-container .product-card');
+                
+                if (courseCard) {
+                    const intensity = 0.15;
+                    const xOffset = mouseX * intensity * 5;
+                    const yOffset = mouseY * intensity * 5;
+                    courseCard.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
+                }
+                
+                ebookCards.forEach((card) => {
+                    const intensity = 0.2;
+                    const xOffset = mouseX * intensity * 5;
+                    const yOffset = mouseY * intensity * 5;
+                    card.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
+                });
+                requestAnimationFrame(updateParallax);
+            }
+
+            updateParallax();
         }
 
-        // Logo Loading
+        // Reset transform on mobile
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.course-container .product-card, .ebooks-container .product-card').forEach(card => {
+                    card.style.transform = '';
+                });
+            }
+        });
+
+        // Logo loading
         function loadLogo() {
             const logo = document.getElementById('logo');
             const img = new Image();
@@ -1994,6 +1563,22 @@
             
             img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/images/logo2.png';
         }
+
+        document.addEventListener('DOMContentLoaded', loadLogo);
+
+        // Staggered animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const courseCard = document.querySelector('.course-container .product-card');
+            const ebookCards = document.querySelectorAll('.ebooks-container .product-card');
+            
+            if (courseCard) {
+                courseCard.style.animationDelay = '0s';
+            }
+            
+            ebookCards.forEach((card, index) => {
+                card.style.animationDelay = `${(index + 1) * 0.15}s`;
+            });
+        });
     </script>
 </body>
 </html>
