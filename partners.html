@@ -1102,6 +1102,21 @@
                 height: 50px;
                 padding: 0.5rem 0.75rem;
             }
+            
+            .partner-logo {
+                width: 120px; /* Zvýšení z výchozí 140px */
+                height: 60px; /* Zvýšení z výchozí 70px */
+                padding: 1rem;
+            }
+
+            .partner-logo img {
+                max-width: 100px; /* Zvýšení z výchozí 100% (omezováno kontejnerem) */
+                max-height: 45px; /* Zvýšení podle potřeby */
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+            
         }
         
         @media (max-width: 768px) {
