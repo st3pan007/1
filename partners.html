@@ -1688,7 +1688,7 @@
             const img = new Image();
             
             img.onload = function() {
-                logo.innerHTML = `<img src="${this.src}" alt="Investuj Chytře Logo" loading="lazy" />`;
+                logo.innerHTML = `<img src="${this.src}" alt="Investuj Chytře Logo" width="290" height="60" fetchpriority="high" />`;
                 logo.classList.remove('fallback');
             };
             
