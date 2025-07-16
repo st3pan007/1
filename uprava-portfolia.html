@@ -536,10 +536,11 @@
             opacity: 0.9;
             line-height: 1.6;
             color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for contrast */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.9s forwards;
-        }        
+        }
+        
         .hero-cta {
             display: flex;
             gap: 1.5rem;
@@ -818,6 +819,90 @@
             line-height: 1.6;
         }
         
+        /* Disclaimer Section */
+        .disclaimer {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .disclaimer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 72, 232, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(46, 165, 237, 0.05) 0%, transparent 50%);
+        }
+        
+        .disclaimer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .disclaimer-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255,255,255,0.04));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .disclaimer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue), var(--highlight-cyan));
+        }
+        
+        .disclaimer-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 193, 7, 0.1));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+        
+        .disclaimer-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #ffc107;
+            fill: none;
+            stroke-width: 2;
+        }
+        
+        .disclaimer-content h3 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+        
+        .disclaimer-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
         /* Scroll Reveal */
         .reveal {
             opacity: 0;
@@ -851,6 +936,15 @@
                 max-width: 250px;
                 height: 50px;
                 padding: 0.5rem 0.75rem;
+            }
+            
+            .disclaimer-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .disclaimer-content p {
+                text-align: center;
             }
         }
         
@@ -938,6 +1032,15 @@
                 max-width: 200px;
                 height: 40px;
             }
+            
+            .disclaimer {
+                padding: 3rem 1rem;
+            }
+            
+            .disclaimer-card {
+                padding: 2rem;
+                gap: 1rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -963,6 +1066,14 @@
             .cta-primary {
                 padding: 1.5rem 2.5rem;
                 font-size: 1.1rem;
+            }
+            
+            .disclaimer-card {
+                padding: 1.5rem;
+            }
+            
+            .disclaimer-content p {
+                font-size: 0.9rem;
             }
         }
         
@@ -1068,6 +1179,21 @@
                         <i data-lucide="circle-user"></i>
                     </div>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="disclaimer">
+        <div class="disclaimer-container">
+            <div class="disclaimer-card reveal">
+                <div class="disclaimer-icon">
+                    <i data-lucide="info"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h3>Důležité upozornění</h3>
+                    <p>Tato úprava portfolia není investičním doporučením ani finančním poradenstvím. Veškerá investiční rozhodnutí jsou výhradně na odpovědnosti investora. Investování na finančních trzích s sebou nese riziko ztráty kapitálu, a proto je důležité důkladně zvážit svou investiční strategii, časový horizont a toleranci k riziku. Minulá výkonnost není zárukou budoucích výsledků a tržní podmínky se mohou měnit. Před jakoukoli investicí doporučujeme provést vlastní analýzu nebo konzultaci s profesionálním finančním poradcem.</p>
+                </div>
             </div>
         </div>
     </section>
