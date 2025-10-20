@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investuj Chytře - Investiční Vzdělávání a Portfolio AUM 50M Kč | Začni Investovat</title>
+    <meta name="description" content="Naučte se investovat chytře s AUM: 50 milionů Kč ve veřejně sdíleném portfoliu. Srozumitelně, jednoduše, bez pozlátek.">
+    <meta name="keywords" content="investování, akcie, portfolio, finanční vzdělávání, investiční kurzy">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Investuj Chytře - Profesionální investiční vzdělávání">
+    <meta property="og:description" content="AUM: 50 milionů Kč ve veřejně sdíleném portfoliu. Věnujeme se vzdělávání lidí v investování.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://example.com/og-image.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Investuj Chytře",
+        "description": "Profesionální investiční vzdělávání a poradenství"
+    }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* CSS Reset & Variables */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #0048e8;
+            --secondary-blue: #2ea5ed;
+            --accent-blue: #007dff;
+            --highlight-cyan: #00d4ff;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #666666;
+            --bg-light: #fafbfc;
+            --bg-glass: rgba(255, 255, 255, 0.1);
+            --bg-glass-dark: rgba(0, 0, 0, 0.1);
+            --shadow-soft: 0 8px 32px rgba(0, 72, 232, 0.12);
+            --shadow-medium: 0 16px 64px rgba(0, 72, 232, 0.16);
+            --shadow-strong: 0 24px 96px rgba(0, 72, 232, 0.24);
+            --gradient-primary: linear-gradient(135deg, #0048e8 0%, #2ea5ed 50%, #007dff 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            --border-glass: 1px solid rgba(255, 255, 255, 0.18);
+            --backdrop-blur: blur(20px);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--bg-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Fluid Typography */
+        h1 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            font-weight: 800; 
+            line-height: 1.1; 
+            letter-spacing: -0.02em;
+        }
+        h2 { 
+            font-size: clamp(2rem, 4vw, 3rem); 
+            font-weight: 700; 
+            line-height: 1.2; 
+            letter-spacing: -0.01em;
+        }
+        h3 { 
+            font-size: clamp(1.5rem, 3vw, 2rem); 
+            font-weight: 600; 
+            line-height: 1.3; 
+        }
+        h4 { 
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem); 
+            font-weight: 600; 
+            line-height: 1.4; 
+        }
+        p { 
+            font-size: clamp(1rem, 2vw, 1.125rem); 
+            line-height: 1.7; 
+            color: var(--text-gray);
+        }
+        
+        /* Advanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 60px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translate3d(-60px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes morphingGlow {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                filter: hue-rotate(0deg);
+            }
+            25% { 
+                transform: scale(1.05) rotate(90deg);
+                filter: hue-rotate(90deg);
+            }
+            50% { 
+                transform: scale(1.1) rotate(180deg);
+                filter: hue-rotate(180deg);
+            }
+            75% { 
+                transform: scale(1.05) rotate(270deg);
+                filter: hue-rotate(270deg);
+            }
+        }
+        
+        @keyframes floatingParticles {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 72, 232, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 72, 232, 0.6), 0 0 80px rgba(0, 212, 255, 0.3);
+            }
+        }
+
+        @keyframes navSlideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Glassmorphism Effects */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: var(--backdrop-blur);
+            border: var(--border-glass);
+        }
+        
+        .glass-dark {
+            background: var(--bg-glass-dark);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.1);
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        
+        .loader::before,
+        .loader::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--text-light);
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+        
+        .loader::before {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .loader::after {
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+            animation-direction: reverse;
+            animation-duration: 1s;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Navigation - Updated from uprava-portfolia.html */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            will-change: transform;
+            background: transparent;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 72, 232, 0.08);
+            box-shadow: 0 2px 20px rgba(0, 72, 232, 0.08);
+            padding: 1rem 0;
+        }
+        
+        .navbar.scrolled .logo {
+            background: transparent;
+            border-color: none;
+        }
+        
+        .navbar.scrolled .logo img {
+            filter: brightness(1);
+        }
+        
+        .navbar.scrolled .logo.fallback {
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+        }
+        
+        .navbar.scrolled .nav-links {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-color: rgba(0, 72, 232, 0.2);
+        }
+        
+        .navbar.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+        
+        .navbar.scrolled .nav-links a:hover {
+            color: var(--text-light);
+            background: var(--gradient-primary);
+        }
+        
+        .navbar.scrolled .nav-links a.active {
+            color: var(--text-light);
+            background: var(--gradient-primary);
+        }
+        
+        .navbar.scrolled .hamburger span {
+            background: var(--text-dark);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 290px;
+            width: 100%;
+            height: 60px;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-light);
+            text-decoration: none;
+            position: relative;
+            transition: transform 0.3s ease, color 0.3s ease;
+            letter-spacing: -0.02em;
+            padding: 0;
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 0;
+            border: none;
+            will-change: transform, color;
+            overflow: hidden;
+        }
+        
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+        
+        .logo.fallback {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.25rem;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 0.5rem;
+            position: relative;
+            will-change: transform;
+            z-index: 1001;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            padding: 0.75rem 1.25rem;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            will-change: transform, background-color;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        .nav-links a.active {
+            color: var(--text-light);
+            background: var(--gradient-primary);
+            box-shadow: 0 4px 20px rgba(0, 72, 232, 0.4);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            z-index: 1002;
+        }
+        
+        .hamburger::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .hamburger:hover::before {
+            opacity: 1;
+        }
+        
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px rgba(0, 72, 232, 0.3);
+        }
+        
+        .hamburger span {
+            width: 24px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .navbar.scrolled .hamburger {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 72, 232, 0.2);
+        }
+        
+        .hamburger.active span {
+            background: var(--text-dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 125, 255, 0.4) 0%, transparent 50%);
+            animation: morphingGlow 15s ease-in-out infinite;
+        }
+        
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--highlight-cyan);
+            border-radius: 50%;
+            animation: floatingParticles 15s linear infinite;
+            opacity: 0;
+        }
+        
+        .particle:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--text-light);
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-glass);
+            backdrop-filter: var(--backdrop-blur);
+            border: var(--border-glass);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--highlight-cyan);
+            border-radius: 50%;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+       .hero-subtitle {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for contrast */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.9s forwards;
+}
+        
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+        
+        /* Premium CTA Buttons */
+        .cta-primary {
+            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+            color: var(--primary-blue);
+            padding: 1.75rem 4rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 70px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            text-transform: none;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 72, 232, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .cta-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 72, 232, 0.1), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+        
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover::after {
+            width: 300%;
+            height: 300%;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #e8f4ff 100%);
+        }
+
+        .cta-primary .icon {
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .cta-primary:hover .icon {
+            transform: rotate(360deg) scale(1.1);
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
+        }
+        
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            padding: 1.75rem 4rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 70px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cta-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 70px;
+        }
+
+        .cta-secondary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .cta-secondary:hover::before {
+            opacity: 1;
+        }
+
+        .cta-secondary:hover::after {
+            width: 300%;
+            height: 300%;
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-secondary .icon {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .cta-secondary:hover .icon {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+        
+        /* Icon System */
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .icon-arrow-right::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 6px solid currentColor;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .icon-play::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 8px solid currentColor;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            margin-left: 2px;
+        }
+        
+        /* About Section - Premium Design */
+        .about {
+            padding: 10rem 2rem;
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 50%, #2d3748 100%);
+            position: relative;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 72, 232, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundFlow 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFlow {
+            0%, 100% { 
+                background: 
+                    radial-gradient(circle at 20% 20%, rgba(0, 72, 232, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            }
+            33% { 
+                background: 
+                    radial-gradient(circle at 70% 30%, rgba(0, 72, 232, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 30% 70%, rgba(46, 165, 237, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 40%, rgba(0, 125, 255, 0.12) 0%, transparent 50%);
+            }
+            66% { 
+                background: 
+                    radial-gradient(circle at 40% 80%, rgba(0, 72, 232, 0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 20%, rgba(46, 165, 237, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 60%, rgba(0, 125, 255, 0.1) 0%, transparent 50%);
+            }
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 30s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50%, 50%); }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-content {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .about-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--highlight-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            position: relative;
+            line-height: 1.1;
+        }
+        
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 120px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .about-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .about-highlight {
+            background: linear-gradient(135deg, rgba(0, 72, 232, 0.1), rgba(46, 165, 237, 0.1));
+            border-left: 4px solid var(--highlight-cyan);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2.5rem 0;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            box-shadow: 0 0 15px var(--highlight-cyan);
+        }
+
+        .about-highlight h4 {
+            color: var(--highlight-cyan);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .about-highlight p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+        
+        .achievements {
+            list-style: none;
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            contain: layout style;
+        }
+
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            opacity: 0.1;
+        }
+        
+        .achievement-item:hover::before {
+            width: 6px;
+        }
+        
+        .achievement-item:hover {
+            transform: translateX(8px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            box-shadow: 0 10px 40px rgba(0, 72, 232, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 800;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 32px rgba(0, 72, 232, 0.3);
+        }
+        
+        .achievement-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: iconShine 3s ease-in-out infinite;
+        }
+
+        @keyframes iconShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+        
+        .achievement-item:hover .achievement-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight-cyan));
+            box-shadow: 0 12px 48px rgba(0, 212, 255, 0.4);
+        }
+        
+        .achievement-text h4 {
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .achievement-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .achievement-stats {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--highlight-cyan);
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Profile Section */
+        .about-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .profile-card {
+            background: var(--text-light);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: var(--shadow-strong);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-primary);
+        }
+        
+        .profile-card:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+            box-shadow: 0 32px 128px rgba(0, 72, 232, 0.2);
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+        
+        .profile-title {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-subtitle {
+            color: var(--primary-blue);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-stats {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+        
+        /* Social Links Section - Simplified Design */
+        .social-section {
+            padding: 6rem 2rem;
+            background: var(--gradient-primary);
+            text-align: center;
+        }
+        
+        .social-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 1px solid var(--border-glass);
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-6px) scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 72, 232, 0.3);
+        }
+        
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--accent-blue), var(--highlight-cyan));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-light);
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .social-link:hover .social-icon::before {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .social-link:hover .social-icon {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--highlight-cyan);
+        }
+
+        .social-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--text-light);
+            fill: none;
+            stroke-width: 2;
+            z-index: 2;
+            position: relative;
+        }
+
+        .social-icon.tiktok svg {
+            fill: var(--text-light);
+            stroke: none;
+        }
+        
+        .social-name {
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+        
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+        
+        .footer-separator {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .footer-logo {
+            height: 20px;
+            width: auto;
+            filter: brightness(0.8);
+            transition: filter 0.3s ease;
+        }
+        
+        .footer-link:hover .footer-logo {
+            filter: brightness(1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-container {
+                gap: 4rem;
+            }
+            
+            .social-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 0.25rem;
+                padding: 0.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                max-width: 250px;
+                height: 50px;
+                padding: 0.5rem 0.75rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 2rem;
+                right: 2rem;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: var(--backdrop-blur);
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: var(--shadow-medium);
+                border: 1px solid rgba(0, 72, 232, 0.2);
+                z-index: 1001;
+            }
+
+            .navbar.scrolled .nav-links {
+                background: rgba(255, 255, 255, 0.95);
+                border-color: rgba(0, 72, 232, 0.2);
+            }
+
+            .nav-links a {
+                color: var(--text-dark);
+                padding: 1rem;
+                text-align: center;
+                border-radius: 15px;
+            }
+
+            .nav-links a:hover {
+                background: rgba(0, 72, 232, 0.1);
+                transform: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .profile-card {
+                padding: 2rem;
+                transform: none;
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-link {
+                min-width: 120px;
+                padding: 1.5rem;
+            }
+
+            .logo {
+                max-width: 200px;
+                height: 40px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .about {
+                padding: 6rem 1rem;
+            }
+            
+            .about-container {
+                padding: 0 1rem;
+            }
+            
+            .achievement-item {
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .achievement-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 0.9rem;
+            }
+            
+            .social-link {
+                padding: 1.5rem;
+                min-width: 100px;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                max-width: 150px;
+                height: 30px;
+                font-size: 1.6rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .logo.fallback {
+                font-size: 1.2rem;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                padding: 1.5rem 2.5rem;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Performance Optimizations */
+        .gpu-accelerated {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo fallback" id="logo">IC</a>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="active">Domů</a></li>
+                <li><a href="zdarma.html">Obsah zdarma</a></li>
+                <li><a href="herohero.html">HeroHero</a></li>
+                <li><a href="merch.html">Merch</a></li>
+                <li><a href="kurzy-knihy.html">Vzdělání</a></li>                
+                <li><a href="partners.html">Začni investovat</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="particles-container"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Přidalo se k nám už 250+ chytrých investorů</span>
+            </div>
+            <h1>Investuj Chytře</h1>
+            <p class="hero-subtitle">Už žádné tápání. Jen chytrá rozhodnutí. Pomůžeme ti postavit silné portfolio, vyhnout se častým chybám a pochopit, jak funguje svět investic: jednoduše a lidsky.</p>
+            <div class="hero-cta">
+                <a href="#about" class="cta-primary">
+                    <span>Začít investovat</span>
+                    <div class="icon">
+                        <div class="icon-arrow-right"></div>
+                    </div>
+                </a>
+                <a href="herohero.html" class="cta-secondary">
+                    <div class="icon">
+                        <div class="icon-play"></div>
+                    </div>
+                    <span>Přidat se k členům</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about reveal" id="about">
+        <div class="about-container">
+            <div class="about-content reveal-left">
+                <h2 class="about-title">Kdo jsem a jak jsem vybudoval své milionové portfolio?</h2>
+                <p class="about-text">
+                    Jsem investor a zakladatel projektu Investuj Chytře. Na rozdíl od většiny „expertů" na internetu, 
+                    neukazuji vám jen teorii z knih. Sdílím vlastní peníze, vlastní obchody a vlastní chyby.
+                </p>
+
+                <div class="about-highlight">
+                    <h4>Moje filozofie je jednoduchá:</h4>
+                    <p>
+                        Nechci, abys mě slepě následoval. Chci, abys pochopil proč.
+Proto ukazujeme nejen co děláme, ale i jak přemýšlíme. Aby ses stal investorem, ne jen následovníkem.
+                    </p>
+                </div>
+
+                <p class="about-text">
+                    <strong>Většina finančního vzdělávání zůstává jen u teorie.</strong> 
+                    Já jdu opačným směrem – ukazuju ti konkrétní rozhodnutí, skutečné peníze a opravdové výsledky. Nic nepřikrášluju a nic ti netlačím.
+                </p>
+                
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-icon">INV</div>
+                        <div class="achievement-text">
+                            <h4>100% transparentní investování</h4>
+                            <p>Každý obchod na trhu je veřejný. Vidíte přesně co kupuji, prodávám a proč. Žádné tajnosti.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Reálné obchody</span>
+                                <span class="stat-badge">Živé portfolio</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">50M</div>
+                        <div class="achievement-text">
+                            <h4>AUM: 50 milionů Kč</h4>
+                            <p>Neradím s penězi, které nemám. Moje portfolio je důkazem, že metody fungují v praxi.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Veřejné portfolio</span>
+                                <span class="stat-badge">Ověřitelné výsledky</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">EDU</div>
+                        <div class="achievement-text">
+                            <h4>Vzdělávání místo prodávání</h4>
+                            <p>Nejsem zde, abych vám prodal kurz za 50 000 Kč, jako většina dnešních "expertů". Chci, abyste se naučili investovat opravdu.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Bez pozlátek</span>
+                                <span class="stat-badge">Férové ceny</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">REAL</div>
+                        <div class="achievement-text">
+                            <h4>Praktické kroky namísto teorie</h4>
+                            <p>Zapomeňte na nudné Excel tabulky. Ukáži vám, jak analyzovat firmy tak, aby to dávalo smysl.</p>
+                            <div class="achievement-stats">
+                                <span class="stat-badge">Krok za krokem</span>
+                                <span class="stat-badge">Prakticky</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="about-highlight">
+                    <h4>Proč jsem začal s Investuj Chytře?</h4>
+                    <p>
+                        Protože jsem byl frustrovaný z toho, kolik lidí se nechá oklamat pseudo-experty, 
+                        kteří prodávají drahé kurzy, ale vlastně nikdy neinvestovali. 
+                        Rozhodl jsem se jít jinou cestou a ukázat, jak to funguje doopravdy. Otevřeně, poctivě a bez přetvářky
+                    </p>
+                </div>
+            </div>
+            
+            <div class="about-visual reveal">
+                <div class="profile-card">
+                    <div class="profile-avatar">IC</div>
+                    <h4 class="profile-title">Zakladatel Investuj Chytře</h4>
+                    <p class="profile-subtitle">Investor & Transparentní Educator</p>
+                    <div class="profile-stats">
+                        <span class="stat-number">250+</span>
+                        <span class="stat-label">Chytrých investorů</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Links Section -->
+    <section class="social-section reveal">
+        <div class="social-container">
+            <h2 class="social-title">Sleduj mě na sociálních sítích</h2>
+            <div class="social-links">
+                <a href="https://instagram.com/investujchytre" class="social-link" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </div>
+                    <span class="social-name">Instagram</span>
+                </a>
+                
+                <a href="https://www.threads.com/@investujchytre" class="social-link" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.5 2C7.26 2 3 6.26 3 11.5c0 2.43.91 4.64 2.41 6.32L4 21l3.18-1.41C8.86 20.09 10.64 21 12.5 21c5.24 0 9.5-4.26 9.5-9.5S17.74 2 12.5 2zm3.77 7.84c-.3 2.64-1.84 4.64-4.18 5.4-.87.28-1.8.26-2.64-.06a4.1 4.1 0 0 1-2.2-2.2c-.32-.84-.34-1.77-.06-2.64.76-2.34 2.76-3.88 5.4-4.18 1.66-.19 3.28.35 4.47 1.49 1.14 1.19 1.68 2.81 1.49 4.47-.02.24-.08.48-.14.72h-.14z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <circle cx="12.5" cy="11.5" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <circle cx="12.5" cy="8.5" r="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span class="social-name">Threads</span>
+                </a>
+                
+                <a href="https://www.facebook.com/profile.php?id=61569883470247" class="social-link" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                        </svg>
+                    </div>
+                    <span class="social-name">Facebook</span>
+                </a>
+                
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 800);
+        });
+
+        // Scroll animation
+        let scrollTimeout;
+        const navbar = document.getElementById('navbar');
+        
+        function handleScroll() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!scrollTimeout) {
+                scrollTimeout = setTimeout(() => {
+                    handleScroll();
+                    scrollTimeout = null;
+                }, 16);
+            }
+        }, { passive: true });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 60;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Particles animation
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles-container');
+            const particleCount = window.innerWidth > 768 ? 40 : 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = '100%';
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Parallax effect
+        const heroParallax = () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+            }
+        };
+
+        let parallaxTimeout;
+        window.addEventListener('scroll', () => {
+            if (!parallaxTimeout) {
+                parallaxTimeout = requestAnimationFrame(() => {
+                    heroParallax();
+                    parallaxTimeout = null;
+                });
+            }
+        }, { passive: true });
+
+        // Logo loading
+        function loadLogo() {
+            const logo = document.getElementById('logo');
+            const img = new Image();
+            
+            img.onload = function() {
+                logo.innerHTML = `<img src="${this.src}" alt="Investuj Chytře Logo" loading="lazy" />`;
+                logo.classList.remove('fallback');
+            };
+            
+            img.onerror = function() {
+                logo.innerHTML = 'IC';
+                logo.classList.add('fallback');
+                logo.style.fontSize = '1.6rem';
+            };
+            
+            img.src = 'https://raw.githubusercontent.com/st3pan007/1/main/images/logo2.png';
+
+        }
+
+        document.addEventListener('DOMContentLoaded', loadLogo);
+
+        // Staggered animation for achievement items
+        document.addEventListener('DOMContentLoaded', () => {
+            const achievementItems = document.querySelectorAll('.achievement-item');
+            achievementItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Investuj Chytře | IČO: 23578769 | Kladno</p>
+            <span class="footer-separator"></span>
+            <a href="https://stebex.cz/" target="_blank" rel="noopener" class="footer-link">
+                <span>Vytvořil</span>
+                <img src="https://imagedelivery.net/TtlFh2d-eb4ze5NHgekWCg/62abbdec-cbc3-45a1-6701-8a6b4ed2b800/public" alt="Stebex" class="footer-logo">
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
